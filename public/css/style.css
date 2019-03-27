@@ -1,0 +1,199 @@
+.login-img3-body .login-form {
+    position: relative;
+    margin:50px auto 20px auto;
+}
+
+.bg{
+    position: fixed;
+    filter: blur(3px);
+    width: 100%;
+    height: 100%;
+}
+
+.flexicibilite{
+    display: flex;
+    justify-content: space-around;
+}
+
+@media print{
+    .no-print{visibility: hidden;}
+}
+
+.radios {
+    padding-top: 0;
+    margin-right: auto;
+}
+
+.folder{
+    text-decoration: none;
+    color: black;
+}
+
+.folder:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.btn:focus, .btn:active, button:focus, button:active {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  #image-gallery .modal-footer{
+    display: block;
+  }
+  
+  .thumb{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  /* Imge défilante */
+  .slider {
+    align-content: center;
+    height: 550px;
+    position: relative;
+    border: 1px solid #ddd;
+    background: linear-gradient(#fff, #fff 20%, #eee 80%, #ddd);
+    border-radius: 2px;
+    width: 100%;
+    top: 156px;
+    overflow: hidden;
+    margin-bottom: 200px;
+}
+
+.slides {
+    display: flex;
+}
+
+.slides>figure {
+    position: absolute;
+}
+
+
+.slides>figure>figcaption {
+    width: 100%;
+    height: 0px;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.7);
+    bottom: 0px;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: rgb(99, 97, 97);
+    display: inline-block;
+    transition-duration: 1s;
+}
+
+#timeline {
+    width: 0px;
+    border: 1px solid rosybrown;
+    height: 1px;
+    position: absolute;
+    bottom: 0px;
+    /* animation: progress 32s infinite;*/
+    transition-duration: 1s;
+
+}
+
+.slider>figure>figcaption:hover {
+    background-color: rgba(102, 63, 63, 0.7);
+}
+
+.doc{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    z-index: 19;
+}
+
+.doc i{
+    cursor: pointer;
+}
+
+.alert-parent{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.253);
+    position: absolute;
+    z-index: 20;
+    display: none;
+}
+
+
+.myalert{
+    width: 400px;
+    height: 250px;
+    box-shadow: 1px 1px 1000px #555;
+    background-color: rgba(255, 0, 0, 0.301);
+    padding: 5px;
+    position: absolute;
+    top: 200px;
+    left: 45%;
+}
+
+.delete-alerte{
+    cursor: pointer;
+}
+
+.myalert>.myalert-content{
+    position: relative;
+    width: 100%;
+    height: 70%;
+    background-color: #fff;
+}
+
+.myalert>.myalert-footer{
+    position: relative;
+    width: 100%;
+    height: 30%;
+    background-color: rgb(126, 124, 124);
+}
+
+.myalert-content>p{
+    text-align: center;
+    position: relative;
+    top: 45%;
+    font-weight: bold;
+}
+
+.myalert-footer>a.right{
+    float: right;
+    position: relative;
+    top: 5px;
+    right: 5px;
+}
+
+.myalert-footer>button.left{
+    float: left;
+    position: relative;
+    top: 5px;
+    left: 5px;
+    color: #fff;
+}
+
+.myalert-footer>*:hover{
+    text-decoration: none;
+    color: white;
+}
+
+a.galery{
+    position: relative;
+    width: 350px;
+    height: 250px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    left: 10px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.galery>img {
+    width: 100%;
+    height: 95%;
+}
+
+.sup{
+    cursor: pointer;
+}
