@@ -190,5 +190,62 @@ class ArticleManager extends Manager
         }
     }
 
+    public function getVideoArticle()
+    {
+
+        $sql = "SELECT id_article, title, content, dates, url FROM article WHERE statut=1";
+        $req = $this->bdd()->query($sql);
+        if ($result = $req->fetchAll()) {
+            return $result;
+        }
+    }
+
+    public function getPhotoArticle()
+    {
+
+        $sql = "SELECT * FROM article WHERE statut=2 GROUP BY title";
+        $req = $this->bdd()->query($sql);
+        if ($result = $req->fetchAll()) {
+            return $result;
+        }
+    }
+
+    public function getPhotoArticleType($id)
+    {
+
+        $sql = "SELECT * FROM article WHERE statut=2 and id_article='$id' GROUP BY title";
+        $req = $this->bdd()->query($sql);
+        if ($result = $req->fetchAll()) {
+            return $result;
+        } else {
+            $this->getPhotoArticle();
+        }
+    }
+
+    public function Article($id)
+    {
+
+        $sql = "SELECT id_article, title, content, last_name, first_name, likes, dates, url
+        FROM article, users WHERE id_article='$id' and user=id_user";
+
+        $req = $this->bdd()->query($sql);
+        if ($result = $req->fetchAll()) {
+
+            return $result;
+        }
+
+    }
+
+    public function getArticleType($id)
+    {
+        $sql = "SELECT id_article, title, content, last_name, first_name, likes, dates, url
+        FROM article, users where type='$id' GROUP BY title";
+
+        $req = $this->bdd()->query($sql);
+        if ($result = $req->fetchAll()) {
+
+            return $result;
+        }
+
     
 }
