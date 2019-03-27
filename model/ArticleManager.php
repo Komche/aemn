@@ -233,7 +233,6 @@ class ArticleManager extends Manager
 
             return $result;
         }
-
     }
 
     public function getArticleType($id)
@@ -246,6 +245,5 @@ class ArticleManager extends Manager
 
             return $result;
         }
-
-    
+    }
 }
