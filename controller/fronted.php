@@ -487,3 +487,88 @@ function error($error)
     $erreur = new Manager();
     $erreur->error($error);
 }
+
+/** Web client mtza*/
+
+function getVideoArticles()
+{
+    $product = new ArticleManager(0, 0, 0, 0, 0);
+    return $product->getVideoArticle();
+}
+
+function getPhotoArticles()
+{
+    $product = new ArticleManager(0, 0, 0, 0, 0);
+    return $product->getPhotoArticle();
+}
+
+function getPhotoArticlesType($id)
+{
+    $product = new ArticleManager(0, 0, 0, 0, 0);
+    return $product->getPhotoArticleType($id);
+}
+function Article($id)
+{
+    $product = new ArticleManager(0, 0, 0, 0, 0);
+    $id = $_GET['id'];
+    return $product->Article($id);
+}
+
+function getArticleType($id)
+{
+    $product = new ArticleManager(0, 0, 0, 0, 0);
+    $id = $_GET['id'];
+    return $product->getArticleType($id);
+}
+
+
+
+function listeActivite()
+{
+    $web = new Web();
+    return $web->listeActivite();
+}
+
+function nbBureau()
+{
+    $all = new Bureau();
+    return $all->nbBE();
+}
+
+function nbSection()
+{
+    $all = new Bureau();
+    return $all->nbSection();
+}
+
+function nbSsection()
+{
+    $all = new Bureau();
+    return $all->nbSsection();
+}
+
+function getLogoBureau()
+{
+    $all = new Bureau();
+    return $all->getLogo();
+}
+
+function getHadiths()
+{
+    $all = new Hadith();
+    return $all->getHadith();
+}
+
+function getAnnonces()
+{
+    $all = new Annonce();
+    return $all->getAnnonce();
+}
+
+function lastAnnonce($id)
+{
+    $all = new Annonce();
+    return $all->lastAnnonce($id);
+}
+
+/** Web client mtza*/
