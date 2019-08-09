@@ -20,7 +20,7 @@
                     foreach ($datas as $data)
                     {
                         ?>
-                        <li data-filter=".filter-app"><a href="index.php?action=photo&id=<? echo $data['id_type_article'] ?>"><? echo $data['label'] ?></a></li>
+                        <li data-filter=".filter-app"><a href="index.php?action=photo&id=<?= $data['id_type_article'] ?>"><?= $data['label'] ?></a></li>
                         <?php
                     }
                 ?>
@@ -37,14 +37,14 @@
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
                         <div class="portfolio-wrap">
                             <figure>
-                                <img src="<? echo $data['url'] ?>" class="img-fluid" alt="">
-                                <a href="<? echo $data['url'] ?>" data-lightbox="portfolio" data-title="<? echo $data['title'] ?>" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                                <img src="<?= $data['url'] ?>" class="img-fluid" alt="">
+                                <a href="<?= $data['url'] ?>" data-lightbox="portfolio" data-title="<?= $data['title'] ?>" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
                                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
                             </figure>
 
                             <div class="portfolio-info">
-                                <h4><a href="#"><? echo $data['title'] ?></a></h4>
-                                <p>Le <? echo strftime(' %A %d %B  %G ',strtotime($data['dates'])) ?></p>
+                                <h4><a href="#"><?= $data['title'] ?></a></h4>
+                                <p>Le <?= strftime(' %A %d %B  %G ',strtotime($data['dates'])) ?></p>
                             </div>
                         </div>
                     </div>

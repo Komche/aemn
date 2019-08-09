@@ -14,9 +14,9 @@
                       {
                           ?>
                           <div class="card " style="width: 45rem;">
-                              <img class="card-img-top" src="<? echo $data['url'] ?>" alt="Card image cap">
+                              <img class="card-img-top" src="<?= $data['url'] ?>" alt="Card image cap">
                               <div class="card-body">
-                                  <h5 class="card-title"><a href="index.php?action=article&id=<? echo $data['id_article']; ?>"><? echo $data['title'] ?> </a></h5>
+                                  <h5 class="card-title"><a href="index.php?action=article&id=<?= $data['id_article']; ?>"><?= $data['title'] ?> </a></h5>
                               </div>
                           </div>
                           <br>
@@ -38,7 +38,7 @@
                             {
                                 ?>
                                 <div class="card-body">
-                                   <a href="index.php?action=activite&id=<? echo $data['id_type_article']; ?>"><? echo $data['label']; ?></a>
+                                   <a href="index.php?action=activite&id=<?= $data['id_type_article']; ?>"><?= $data['label']; ?></a>
                                 </div>
                                 <?php
                             }

@@ -40,9 +40,9 @@
                             $j++;
                             ?>
                         <tr>
-                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><? echo $user['last_name'].' '.$user['first_name'] ?></font></font></td>
-                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><? echo $user['email'] ?></font></font></td>
-                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><? echo $user['phone_number'] ?></font></font></td>
+                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><?= $user['last_name'].' '.$user['first_name'] ?></font></font></td>
+                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><?= $user['email'] ?></font></font></td>
+                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><?= $user['phone_number'] ?></font></font></td>
                             <td class="no-print" >
                                 <form style="display:flex;" action="#" method="post" accept-charset="utf-8">
                                     <div class="form-group">
@@ -59,18 +59,18 @@
                                     </div>
                                     <div class="radios">
                                         <label class="label_radio r_off" for="radio-01">
-                                            <input name="type" <? if($user['types']=="Admin") echo("checked"); ?> <? echo 'onclick="isAdmin('.$a.','.$b.')"'; ?>  <? echo 'id="radio-'.$i.'"'; ?> value="Admin" type="radio" ><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Administrateur</font></font>
+                                            <input name="type" <? if($user['types']=="Admin") echo("checked"); ?> <?= 'onclick="isAdmin('.$a.','.$b.')"'; ?>  <?= 'id="radio-'.$i.'"'; ?> value="Admin" type="radio" ><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Administrateur</font></font>
                                         </label>
                                         <label class="label_radio r_on" for="radio-02">
-                                            <input <? if($user['types']=="Membre") echo("checked"); ?> name="type" <? echo 'onclick="notAdmin('.$a.','.$b.')"'; ?> <? echo 'id="radio-'.$j.'"'; ?> value="Membre" type="radio" ><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Membre</font></font>
+                                            <input <? if($user['types']=="Membre") echo("checked"); ?> name="type" <?= 'onclick="notAdmin('.$a.','.$b.')"'; ?> <?= 'id="radio-'.$j.'"'; ?> value="Membre" type="radio" ><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Membre</font></font>
                                         </label>
                                     </div>
-                                    <input type="hidden" value="<? echo $user['id_user'] ?>" name="user">
-                                    <input type="hidden" value="<? echo $user['id_roles'] ?>" name="role">
+                                    <input type="hidden" value="<?= $user['id_user'] ?>" name="user">
+                                    <input type="hidden" value="<?= $user['id_roles'] ?>" name="role">
                                     <div class="btn-group">
                                         <button <? if(!empty($user['types'])) echo("disabled"); ?> class="btn btn-primary" type="submit"><i class="fa fa-check"></i></button>
                                     
-                                        <a class="btn btn-primary" href="index.php?action=modif&amp;user=<? echo $user['id_user'] ?>"><i class="icon_pencil-edit"></i></a>
+                                        <a class="btn btn-primary" href="index.php?action=modif&amp;user=<?= $user['id_user'] ?>"><i class="icon_pencil-edit"></i></a>
                                     </div>
                                 </form>
                             </td>

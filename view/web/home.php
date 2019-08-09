@@ -26,7 +26,7 @@ ob_start();
             {
               ?>
               <div class="carousel-item">
-                <div class="carousel-background"><img src="<? echo $data['url'] ?>" alt="photo dynamique"></div>
+                <div class="carousel-background"><img src="<?= $data['url'] ?>" alt="photo dynamique"></div>
                 <div class="carousel-container">
                   <div class="carousel-content">
                     <h2>Association des Etudiants Musulmans du Niger</h2>
@@ -279,9 +279,9 @@ ob_start();
             foreach ($datas as $data)
             {
               ?>
-              <img src="<? echo $data['h_annonce'] ?>" alt="<? echo $data['titre'] ?>">
+              <img src="<?= $data['h_annonce'] ?>" alt="<?= $data['titre'] ?>">
               <br>
-              <h5><? echo $data['titre'] ?>, le <? echo $data['date'] ?> à partir de <? echo $data['heure'] ?></h5>
+              <h5><?= $data['titre'] ?>, le <?= $data['date'] ?> à partir de <?= $data['heure'] ?></h5>
               <?php
             } */
           ?>
@@ -307,12 +307,12 @@ ob_start();
             {
               ?>
               <div class="testimonial-item">
-                <img src="<? echo $data['h_img'] ?>" class="testimonial-img" alt="<? echo $data['titre'] ?>">
-                <h3><? echo $data['titre'] ?></h3>
-                <h4><? echo $data['rapporteur'] ?></h4>
+                <img src="<?= $data['h_img'] ?>" class="testimonial-img" alt="<?= $data['titre'] ?>">
+                <h3><?= $data['titre'] ?></h3>
+                <h4><?= $data['rapporteur'] ?></h4>
                 <p>
                   <img src="public/vendor/img/quote-sign-left.png" class="quote-sign-left" alt="">
-                    <? echo $data['hadith'] ?>
+                    <?= $data['hadith'] ?>
                   <img src="public/vendor/img/quote-sign-right.png" class="quote-sign-right" alt="">
                 </p>
               </div>
@@ -342,10 +342,10 @@ ob_start();
                   ?>
           <div class="col-lg-3 col-md-6 wow fadeInUp">
             <div class="member">
-              <img src="<? echo $data['logo']?>" class="img-fluid" alt="<? echo $data['nom_bureau']?>">
+              <img src="<?= $data['logo']?>" class="img-fluid" alt="<?= $data['nom_bureau']?>">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4><? echo $data['nom_bureau']?></h4>
+                  <h4><?= $data['nom_bureau']?></h4>
                   <span>Chief Executive Officer</span>
                   <div class="social">
                     <a href="#"><i class="fa fa-twitter"></i></a>
