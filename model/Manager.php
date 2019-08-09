@@ -15,8 +15,8 @@ class Manager
         $pass = '@aemn2019';
         if ($_SERVER["SERVER_NAME"] == 'localhost') {
             $dbname = 'aemn';
-            $user = 'komche';
-            $pass = '@tech4niger';
+            $user = 'root';
+            $pass = '';
         }
         try {
             $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
