@@ -1,0 +1,8 @@
+- Ajout bureau: nom et logo;
+- Annonce: date, heure, titre, description, photo;
+- Ajout utilisateur: liaison avec la table bureau;
+- Revoir modification utilisateur;
+- Revoir Ajout article;
+Front
+Menu unique
+
