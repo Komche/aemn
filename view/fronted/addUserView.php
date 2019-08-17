@@ -47,6 +47,26 @@
                         <input class="form-control" value="<?if (isset($_GET['user'])) echo $user['phone_number'] ?>" id="phone_number" name="phone_number" minlength="8" type="tel" required />
                       </div>
                     </div>
+                    <div class="form-group ">
+                      <label for="bureau" class="control-label col-lg-2">Bureau</label>
+                      <div class="col-lg-10">
+                        <select class="form-control" name="bureau" id="bureau">
+                          <?php
+                            $bureaus = BureauManager::getBureau();
+                        
+                            foreach ($bureaus as $bureau){
+                              if (isset($_GET['user'])) {
+                                if ($user['bureau']==$bureau['nom_bureau']) {
+                                  echo('<option selected value="'.$bureau['nom_bureau'] .'">'.$bureau['nom_bureau'].'</option>');
+                                }
+                              }
+                          ?>
+                          <option value="<?=$bureau['nom_bureau'] ?>"><?=$bureau['nom_bureau'] ?></option>
+
+                            <?php }?>
+                        </select>
+                      </div>
+                    </div>
                     <div class="form-group">
                       <div class="col-lg-offset-2 col-lg-10">
                         <button class="btn btn-primary" type="submit">Valider</button>

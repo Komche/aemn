@@ -36,7 +36,7 @@
                       </div>
                     </div>
                     <div class="form-group ">
-                      <label for="email" class="control-label col-lg-2">Status</label>
+                      <label for="statut" class="control-label col-lg-2">Status</label>
                       <div class="col-lg-10">
                         <select class="form-control" name="statut" id="statut">
                           <option value="1">Section</option>
