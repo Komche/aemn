@@ -40,14 +40,15 @@ class BureauManager extends Manager
         }
     }
 
-    public function addBureau($nom_bureau, $logo, $statut)
+    public function addBureau($nom_bureau, $logo, $statut, $url)
     {
+        $myurl = $this->addImg($logo, $url);
         $sql = "INSERT INTO bureau(nom_bureau, logo, statut)
             VALUE(:nom_bureau, :logo, :statut)";
             $user = $this->bdd()->prepare($sql);
             if($user->execute(array(
                 'nom_bureau' => $nom_bureau,
-                'logo' => $logo,
+                'logo' => $myurl,
                 'statut' => $statut
             ))){
                 return 1;
@@ -57,118 +58,48 @@ class BureauManager extends Manager
             }
     }
 
-    public function updateBureau($id, $nom_bureau, $logo, $statut)
+    public function updateBureau($id, $nom_bureau, $logo, $statut, $url)
     {
+        $myurl = $this->addImg($logo, $url);
         $sql = "UPDATE bureau SET nom_bureau=:nom_bureau, logo=:logo, statut=:statut
          WHERE id_bureau=:id";
 
         $user = $this->bdd()->prepare($sql);
         $user->execute(array(
             'nom_bureau' => $nom_bureau,
-            'logo' => $logo,
+            'logo' => $myurl,
             'statut' => $statut,
             'id' => $id
         ));
         return 1;
     }
 
-    public function verifPassword($password1, $password2)
+    public function addImg($name, $url)
     {
-        if (strlen($password1) < 8 or strlen($password1) > 20) {
-            return $erreur = "Désolé le mot de passe doit avoir au moins 8 caractères et au plus 20 caractères !";
+        $fichier_dest = 'public/doc/' . $name;
+
+        if (file_exists($fichier_dest)) {
+            die("$fichier_dest existe déjà dans ce dossier");
         } else {
-            if ($password1 == $password2) {
-                return 'ok';
-            } else {
-                return "Le mot de passe est différent du mot de passe de confirmation !";
+            if (move_uploaded_file($url, $fichier_dest)) {
+                return $fichier_dest;
             }
-
-
         }
     }
 
-    public function createAccount($code, $password)
+    public function verifImg($name)
     {
-        $sql = "SELECT code FROM users WHERE code=:code";
+        $extension_fichier = strrchr($name, '.');
+        $extension_autorisee = array('.png', '.jpg', '.JPG', '.jpeg', '.PDF', '.pdf', '.docx', '.odp', '.doc');
 
-        $req = $this->bdd()->prepare($sql);
-        $req->execute(array('code' => $code));
-
-        if ($res = $req->fetch()) {
-            $sql = "UPDATE users SET password_user=:password_ WHERE code=:code";
-
-            $req = $this->bdd()->prepare($sql);
-            if ($req->execute(array(
-                'password_' => $password,
-                'code' => $code
-            ))) {
-                return 'ok';
-            } else {
-                return 'Une erreure s\'est produite';
-            }
+        if (in_array($extension_fichier, $extension_autorisee)) {
+            return 'ok';
         } else {
-            return 'Ce code est invalide, vérifier et puis réessayer';
-        }
-
-        return 1;
-    }
-
-    public function connectUser()
-    {
-        $db = $this->getDb();
-        $sql = 'SELECT * FROM users WHERE email = :email ';
-        $user = $db->prepare($sql);
-        $user->execute(array('email' => $this->email));
-        $result = $user->fetch();
-
-        if ($result) {
-            if ($this->mdp == $result['password_user']) {
-                return 'ok';
-            } else {
-                return $erreur = 'Le mot de passe est incorrecte !';
-            }
-
-        } else {
-            $erreur = 'L\'adresse email n\'existe pas';
+            global $erreur;
+            $erreur = 'Seule les images sont autorisés';
             return $erreur;
         }
     }
-
-    public function getUserToUpdate($user)
-    {
-        $sql="SELECT * FROM users WHERE id_user=:user";
-
-        $req = $this->bdd()->prepare($sql);
-        $req->execute(array('user'=>$user));
-
-        if ($result= $req->fetch()){
-
-            return $result;
-        }
-    }
-
-    public function sessionUser()
-    {
-        $db = $this->getDb();
-        $sql = 'SELECT u.id_user, u.last_name, u.first_name, u.email, u.phone_number, r.types, r.read_role, 
-        r.write_role, r.id_roles FROM users u LEFT JOIN roles r ON u.id_user = r.user WHERE email = :email ';
-        $session = $db->prepare($sql);
-        $session->execute(array('email' => $this->email));
-
-        if ($result = $session->fetch()) {
-            $_SESSION['id'] = $result['id_user'];
-            $_SESSION['last_name'] = $result['last_name'];
-            $_SESSION['first_name'] = $result['first_name'];
-            $_SESSION['email'] = $result['email'];
-            $_SESSION['phone_number'] = $result['phone_number'];
-            $_SESSION['types'] = $result['types'];
-            $_SESSION['read_role'] = $result['read_role'];
-            $_SESSION['write_role'] = $result['write_role'];
-
-            return 1;
-        }
-    }
-
     /**
      * Get the value of db
      */
