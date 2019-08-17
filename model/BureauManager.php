@@ -22,88 +22,22 @@ class BureauManager extends Manager
         }
     }
 
-    public function SendMail()
+
+   
+
+    public function verifUser($nom_bureau, $logo, $status)
     {
-        global $token;
-        $subject = "PRODEC NIGER - Activation de compte";
-
-        ob_start();
-        require('view/fronted/activeEmailView.php');
-        $message = ob_get_clean();
-
-        $mail = new PHPMailer();
-
-        try {
-            //Create a new PHPMailer instance
-            $mail = new PHPMailer;
-
-    //Tell PHPMailer to use SMTP
-            $mail->isSMTP();
-    
-    //Set the hostname of the mail server
-            $mail->Host = 'smtp.hostinger.fr';
-    // use
-    // $mail->Host = gethostbyname('smtp.gmail.com');
-    // if your network does not support SMTP over IPv6
-    
-    //Set the SMTP port number - 587 for authenticated TLS
-            $mail->Port = 587;
-    
-    //Set the encryption system to use - ssl (deprecated) or tls
-            $mail->SMTPSecure = 'tls';
-    
-    //Whether to use SMTP authentication
-            $mail->SMTPAuth = true;
-    
-    //Username to use for SMTP authentication - use full email address for gmail
-            $mail->Username = "contact@prodecniger.org";
-    
-    //Password to use for SMTP authentication
-            $mail->Password = "prodecniger*";
-    
-    //Set who the message is to be sent from
-            $mail->setFrom('contact@prodecniger.org', 'PRODEC NIGER');
-    
-    //Set an alternative reply-to address
-            $mail->addReplyTo('contact@prodecniger.org', 'PRODEC NIGER');
-    
-    //Set who the message is to be sent to
-            $mail->addAddress($this->email, $this->last_name." ".$this->first_name);
-       
-    
-        //Content
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = $subject;
-            $mail->Body = $message;
-        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-            $mail->send();
-            return 1;
-                                      // TCP port to connect to
-        } catch (Exception $e) {
-
-            return  'Message non envoyer : ' . $mail->ErrorInfo;
+        if (empty($nom_bureau)) {
+            return "Le nom du bureau ne doit pas être vide";
         }
-    }
 
-    public function getUserRole()
-    {
-        $sql = "SELECT u.id_user, u.last_name, u.first_name, u.email, u.phone_number, r.types, r.read_role, 
-        r.write_role, r.id_roles FROM users u LEFT JOIN roles r ON u.id_user = r.user";
-
-        $req = $this->bdd()->query($sql);
-
-        if ($result = $req->fetchAll()) {
-
-            return $result;
+        if (strlen($nom_bureau)<3) {
+            return "Ce nom est trop pétit";
         }
-    }
 
-    public function verifUser()
-    {
-        global $erreur;
-        $erreur = $this->verif($this->last_name, $this->first_name, $this->email, $this->phone_number, $this->mdp);
-        return $erreur;
+        if (empty($logo)) {
+            return "Le logo n'a pas été renseigné";
+        }
     }
 
     public function addUser()
