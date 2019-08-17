@@ -39,8 +39,8 @@
                             ?>
                         <tr>
                             <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><?= $bureau['nom_bureau'] ?></font></font></td>
-                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><?= $bureau['statut'] ?></font></font></td>
-                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><img src="<?= $bureau['logo'] ?>" alt="logo" sizes="50"></font></font></td>
+                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><?= BureauManager::getStatus($bureau['statut']) ?></font></font></td>
+                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><img src="<?= $bureau['logo'] ?>" alt="logo" width="50"></font></font></td>
                             <td class="no-print" >
                                 <p>ha</p>
                             </td>

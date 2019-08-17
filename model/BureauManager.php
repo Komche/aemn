@@ -3,18 +3,12 @@ require_once("Manager.php");
 
 class BureauManager extends Manager
 {
-    private $db;
-
-    public function __construct()
-    {
-        $this->db = $this->bdd();
-    }
 
     public static function getBureau()
     {
         $sql = "SELECT * FROM bureau";
 
-        $req = $this->bdd()->query($sql);
+        $req = self::getDb()->query($sql);
 
         if ($result = $req->fetchAll()) {
 
@@ -48,7 +42,7 @@ class BureauManager extends Manager
         $myurl = $this->addImg($logo, $url);
         $sql = "INSERT INTO bureau(nom_bureau, logo, statut)
             VALUE(:nom_bureau, :logo, :statut)";
-            $user = $this->bdd()->prepare($sql);
+            $user = self::getDb()->prepare($sql);
             if($user->execute(array(
                 'nom_bureau' => $nom_bureau,
                 'logo' => $myurl,
@@ -72,7 +66,7 @@ class BureauManager extends Manager
         $sql = "UPDATE bureau SET nom_bureau=:nom_bureau, logo=:logo, statut=:statut
          WHERE id_bureau=:id";
 
-        $user = $this->bdd()->prepare($sql);
+        $user = self::getDb()->prepare($sql);
         $user->execute(array(
             'nom_bureau' => $nom_bureau,
             'logo' => $myurl,
@@ -108,12 +102,35 @@ class BureauManager extends Manager
             return $erreur;
         }
     }
+
+    public static function getStatus($statut)
+    {
+        if ($statut==1) {
+            return 'Section';
+        }else {
+            return 'Sous-section';
+        }
+    }
     /**
      * Get the value of db
      */
-    public function getDb()
+    public static function getDb()
     {
-        return $this->db;
+        $dbname = 'akoybizc_aemn';
+        $user = 'akoybizc_attaher';
+        $pass = '@aemn2019';
+        if ($_SERVER["SERVER_NAME"] == 'localhost') {
+            $dbname = 'aemn';
+            $user = 'root';
+            $pass = '';
+        }
+        try {
+            $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+            $bdd = new PDO("mysql:host=localhost;dbname=$dbname;charset=utf8", "$user", "$pass", $pdo_options);
+        } catch (Exception $e) {
+            die('Erreur :' . $e->getMessage());
+        }
+        return $bdd;
     }
 }
     

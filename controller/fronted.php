@@ -5,6 +5,7 @@ require_once("model/ArticleManager.php");
 require_once("model/FolderManager.php");
 require_once("model/DocumentManager.php");
 require_once("model/RoleManager.php");
+require_once("model/BureauManager.php");
 require_once("model/Form.php");
 require_once('model/Web.php');
 require_once('model/Bureau.php');
