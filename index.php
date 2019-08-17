@@ -49,8 +49,8 @@ if (isset($_SESSION["id"])) {
             getManageUserView();
         } elseif ($_GET['action'] == "modif" && isset($_GET['user'])) {// modifier un utilisateur
 
-            if (isset($_POST['last_name']) && isset($_POST['first_name']) && isset($_POST['email']) && isset($_POST['phone_number'])) {
-                editUsers($_POST['last_name'], $_POST['first_name'], $_POST['email'], $_POST['phone_number'],$_GET['user']);
+            if (isset($_POST['last_name']) && isset($_POST['first_name']) && isset($_POST['email']) && isset($_POST['phone_number']) && isset($_POST['bureau'])) {
+                editUsers($_POST['last_name'], $_POST['first_name'], $_POST['email'], $_POST['phone_number'], $_POST['bureau'], $_GET['user']);
             }
             getAddUserView();
         } elseif ($_GET['action'] == "addAV") {// ajouter un article

@@ -190,10 +190,10 @@ function createAccounts($code, $password, $passowrd2)
 }
 
     /* The following function subscribe the user in the web application */
-function addUsers($last_name, $first_name, $email, $phone_number)
+function addUsers($last_name, $first_name, $email, $phone_number, $bureau)
 {
 
-    $userManager = new UserManager($last_name, $first_name, $email, $phone_number, $_POST['bureau'], 0, 0);
+    $userManager = new UserManager($last_name, $first_name, $email, $phone_number, $bureau, 0, 0);
     $verif = $userManager->verifUser();
 
     if ($verif == 'ok') {
@@ -209,10 +209,10 @@ function addUsers($last_name, $first_name, $email, $phone_number)
 }
 
     /* The following function subscribe the user in the web application */
-function editUsers($last_name, $first_name, $email, $phone_number, $id)
+function editUsers($last_name, $first_name, $email, $phone_number, $bureau, $id)
 {
 
-    $userManager = new UserManager($last_name, $first_name, $email, $phone_number, 0, 0);
+    $userManager = new UserManager($last_name, $first_name, $email, $phone_number, $bureau, 0, 0);
     $verif = $userManager->verifUser();
 
     if ($verif == 'ok') {
