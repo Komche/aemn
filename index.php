@@ -127,13 +127,14 @@ if (isset($_SESSION["id"])) {
             extract_post(['nom_bureau', 'statut']);
             if (isset($_SESSION['id']) && !empty($_FILES['logo'])) {
                 
-                BureauManager::addBureau($nom_bureau, $_FILES['logo']['name'],$statut,$_FILES['logo']['tmp_name']);
-                
+                $res = BureauManager::addBureau($nom_bureau, $_FILES['logo']['name'],$statut,$_FILES['logo']['tmp_name']);
+                if ($res==1) {
+                    header('Location: index.php?action=showBuro');
+                }
             }
             require_once('view/fronted/addBureauView.php');
         }elseif ($_GET['action'] == "showBuro") {// afficher des bureau
-            //extract_get('galerie');
-            getShowBuroView();
+           require_once('view/fronted/ShowBureauView.php');
         }  
 
     } else {
