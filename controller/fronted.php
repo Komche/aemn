@@ -172,7 +172,7 @@ function connectUsers($last_name, $first_name, $email, $phone_number, $mdp, $mdp
 function createAccounts($code, $password, $passowrd2)
 {
 
-    $userManager = new UserManager(0, 0, 0, 0, 0, 0);
+    $userManager = new UserManager(0, 0, 0, 0, 0, 0, 0);
     $verif = $userManager->verifPassword($password, $passowrd2);
 
     if ($verif == 'ok') {
@@ -193,7 +193,7 @@ function createAccounts($code, $password, $passowrd2)
 function addUsers($last_name, $first_name, $email, $phone_number)
 {
 
-    $userManager = new UserManager($last_name, $first_name, $email, $phone_number, 0, 0);
+    $userManager = new UserManager($last_name, $first_name, $email, $phone_number, $_POST['bureau'], 0, 0);
     $verif = $userManager->verifUser();
 
     if ($verif == 'ok') {
@@ -228,19 +228,19 @@ function editUsers($last_name, $first_name, $email, $phone_number, $id)
 
 function getUser()
 {
-    $user = new UserManager(0, 0, 0, 0, 0, 0);
+    $user = new UserManager(0, 0, 0, 0, 0, 0, 0);
     return $user->getUser();
 }
 
 function getUsersToUpdate($user)
 {
-    $data = new UserManager(0, 0, 0, 0, 0, 0);
+    $data = new UserManager(0, 0, 0, 0, 0, 0, 0);
     return $data->getUserToUpdate($user);
 }
 
 function getUserRole()
 {
-    $user = new UserManager(0, 0, 0, 0, 0, 0);
+    $user = new UserManager(0, 0, 0, 0, 0, 0, 0);
     return $user->getUserRole();
 }
 

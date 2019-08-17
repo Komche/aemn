@@ -15,13 +15,15 @@ class UserManager extends Manager
     private $mdp;
     private $mdp2;
     private $db;
+    private $bureau;
 
-    public function __construct($last_name, $first_name, $email, $phone_number, $mdp, $mdp2)
+    public function __construct($last_name, $first_name, $email, $phone_number, $bureau, $mdp, $mdp2)
     {
         $this->last_name = $last_name;
         $this->first_name = $first_name;
         $this->email = $email;
         $this->phone_number = $phone_number;
+        $this->bureau = $bureau;
         $this->mdp = $mdp;
         $this->mdp2 = $mdp2;
         $this->db = $this->bdd();
@@ -128,8 +130,8 @@ class UserManager extends Manager
         $length = 12;
         global $token;
         $token = bin2hex(random_bytes($length));
-        $sql = "INSERT INTO users(last_name, first_name, email, phone_number, code)
-            SELECT * FROM(SELECT :last_name, :first_name, :email, :phone_number, :code) as tmp
+        $sql = "INSERT INTO users(last_name, first_name, email, phone_number, bureau, code)
+            SELECT * FROM(SELECT :last_name, :first_name, :email, :phone_number, :bureau, :code) as tmp
             WHERE NOT EXISTS(
             SELECT email FROM users WHERE email = :email) LIMIT 1";
             $user = $this->bdd()->prepare($sql);
@@ -138,6 +140,7 @@ class UserManager extends Manager
                 'first_name' => $this->first_name,
                 'email' => $this->email,
                 'phone_number' => $this->phone_number,
+                'bureau' => $this->bureau,
                 'code' => $token,
             ))){
                 return 1;
