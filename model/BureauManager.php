@@ -57,17 +57,16 @@ class BureauManager extends Manager
             }
     }
 
-    public function updateUser($id)
+    public function updateBureau($id, $nom_bureau, $logo, $statut)
     {
-        $sql = "UPDATE users SET last_name=:last_name, first_name=:first_name, email=:email, phone_number=:phone_number
-         WHERE id_user=:id";
+        $sql = "UPDATE bureau SET nom_bureau=:nom_bureau, logo=:logo, statut=:statut
+         WHERE id_bureau=:id";
 
         $user = $this->bdd()->prepare($sql);
         $user->execute(array(
-            'last_name' => $this->last_name,
-            'first_name' => $this->first_name,
-            'email' => $this->email,
-            'phone_number' => $this->phone_number,
+            'nom_bureau' => $nom_bureau,
+            'logo' => $logo,
+            'statut' => $statut,
             'id' => $id
         ));
         return 1;
