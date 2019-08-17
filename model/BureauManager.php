@@ -25,23 +25,26 @@ class BureauManager extends Manager
 
    
 
-    public function verifBureau($nom_bureau, $logo)
+    private static function verifBureau($nom_bureau, $logo)
     {
         if (empty($nom_bureau)) {
             return "Le nom du bureau ne doit pas être vide";
-        }
-
-        if (strlen($nom_bureau)<3) {
+        }elseif (strlen($nom_bureau)<3) {
             return "Ce nom est trop pétit";
-        }
-
-        if (empty($logo)) {
+        }elseif (empty($logo)) {
             return "Le logo n'a pas été renseigné";
+        }else {
+            return 1;
         }
     }
 
-    public function addBureau($nom_bureau, $logo, $statut, $url)
+    public static function addBureau($nom_bureau, $logo, $statut, $url)
     {
+        $verif = self::verifBureau($nom_bureau, $logo);
+        if ($verif!==1) {
+            return $verif;
+        }
+
         $myurl = $this->addImg($logo, $url);
         $sql = "INSERT INTO bureau(nom_bureau, logo, statut)
             VALUE(:nom_bureau, :logo, :statut)";
@@ -58,8 +61,13 @@ class BureauManager extends Manager
             }
     }
 
-    public function updateBureau($id, $nom_bureau, $logo, $statut, $url)
+    public static function updateBureau($id, $nom_bureau, $logo, $statut, $url)
     {
+        $verif = self::verifBureau($nom_bureau, $logo);
+        if ($verif!==1) {
+            return $verif;
+        }
+        
         $myurl = $this->addImg($logo, $url);
         $sql = "UPDATE bureau SET nom_bureau=:nom_bureau, logo=:logo, statut=:statut
          WHERE id_bureau=:id";
