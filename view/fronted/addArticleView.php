@@ -40,6 +40,12 @@
                             <?php if (isset($_GET['article'])) $article = getArticles($_GET['article']); ?>
                             <form class="form-validate form-horizontal" id="feedback_form" method="post" action="" enctype="multipart/form-data">
                                 <div class="form-group ">
+                                    <label for="chassis_number" class="control-label col-lg-2">Titre</label>
+                                    <div class="col-lg-10" id="title">
+                                        <input class="form-control" id="title" name="title" type="text" value="<? if (isset($_GET['article'])) echo $article['title'] ?>" />
+                                    </div>
+                                </div>
+                                <div class="form-group ">
                                     <label for="type" class="control-label col-lg-2">Type d'article<span class="required">*</span></label>
                                     <div class="col-lg-10" id="parent">
                                         <select onclick="hideType()" class="form-control" id="type" name="type">

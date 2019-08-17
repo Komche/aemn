@@ -6,13 +6,15 @@ class ArticleManager extends Manager
 
     private $user;
     private $type;
+    private $title;
     private $content;
     private $db;
 
-    public function __construct($user, $type, $content)
+    public function __construct($user, $title, $type, $content)
     {
         $this->user = $user;
         $this->type = $type;
+        $this->title = $title;
         $this->content = $content;
         $this->db = $this->bdd();
     }
@@ -38,12 +40,13 @@ class ArticleManager extends Manager
     {
 
         $myurl = $this->addImg($name, $url);
-        $sql = "INSERT INTO article(user, type, url, content)
-        VALUE(:user, :type, :url, :content)";
+        $sql = "INSERT INTO article(user, title, type, url, content)
+        VALUE(:user, :title, :type, :url, :content)";
 
         $req = $this->getDb()->prepare($sql);
         $req->execute(array(
             'user' => $this->user,
+            'title' => $this->title,
             'type' => $this->type,
             'url' => $myurl,
             'content' => $this->content
@@ -54,11 +57,12 @@ class ArticleManager extends Manager
     public function editArticle($id, $name = null, $url)
     {
         $myurl = $this->addImg($name, $url);
-        $sql = "UPDATE article SET user=:user, type=:type, url=:url, content=:content WHERE id_article=:id";
+        $sql = "UPDATE article SET user=:user, title=:title, type=:type, url=:url, content=:content WHERE id_article=:id";
 
         $req = $this->getDb()->prepare($sql);
         $req->execute(array(
             'user' => $this->user,
+            'title' => $this->title,
             'type' => $this->type,
             'url' => $myurl,
             'content' => $this->content,

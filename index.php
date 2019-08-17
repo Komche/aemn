@@ -60,13 +60,13 @@ if (isset($_SESSION["id"])) {
                 $type = $_POST['type'];
             }
 
-            if (isset($_SESSION['id']) && isset($_POST['content']) && isset($_FILES['url']) && isset($type)) {
+            if (isset($_SESSION['id']) && isset($_POST['title']) && isset($_POST['content']) && isset($_FILES['url']) && isset($type)) {
                 if(isset($_POST['other']) ){
                     addType_articles($_POST['other']);
                     $id = getId();
-                    addArticles($_SESSION['id'], $id, $_POST['content'], $_FILES['url']['name'], $_FILES['url']['tmp_name']);
+                    addArticles($_SESSION['id'], $_POST['title'], $id, $_POST['content'], $_FILES['url']['name'], $_FILES['url']['tmp_name']);
                 }elseif (isset($_POST['type']) ) {
-                    addArticles($_SESSION['id'], $type, $_POST['content'], $_FILES['url']['name'], $_FILES['url']['tmp_name']);
+                    addArticles($_SESSION['id'], $_POST['title'], $type, $_POST['content'], $_FILES['url']['name'], $_FILES['url']['tmp_name']);
                 }
 
             }
@@ -79,14 +79,14 @@ if (isset($_SESSION["id"])) {
                 $type = $_POST['type'];
             }
             //print_r($_POST); die("yes");
-            if (isset($_SESSION['id']) && isset($_POST['content']) && isset($_FILES['url']) && isset($type)) {
+            if (isset($_SESSION['id']) && isset($_POST['title']) && isset($_POST['content']) && isset($_FILES['url']) && isset($type)) {
                 if (isset($_POST['other'])) {
                     addType_articles($_POST['other']);
                     $id = getId();
-                    editArticles($_SESSION['id'], $id, $_POST['content'], $_FILES['url']['name'],$_FILES['url']['tmp_name'], $_GET['article']);
+                    editArticles($_SESSION['id'], $_POST['title'], $id, $_POST['content'], $_FILES['url']['name'],$_FILES['url']['tmp_name'], $_GET['article']);
                 } elseif (isset($_POST['type'])) {
                     
-                    editArticles($_SESSION['id'], $type, $_POST['content'], $_FILES['url']['name'],$_FILES['url']['tmp_name'],$_GET['article']);
+                    editArticles($_SESSION['id'], $_POST['title'], $type, $_POST['content'], $_FILES['url']['name'],$_FILES['url']['tmp_name'],$_GET['article']);
                 }
             }
             getAddArticleView();

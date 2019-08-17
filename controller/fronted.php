@@ -156,7 +156,7 @@ function getShowImagesSlideView()
 function connectUsers($last_name, $first_name, $email, $phone_number, $mdp, $mdp2)
 {
 
-    $userManager = new UserManager($last_name, $first_name, $email, $phone_number, $mdp, $mdp2);
+    $userManager = new UserManager($last_name, $first_name, $email, $phone_number, 0, $mdp, $mdp2);
     $verif = $userManager->connectUser();
 
     if ($verif == 'ok') {
@@ -272,10 +272,10 @@ function getRole()
 }  
 
     /* The following function add the article in the web application */
-function addArticles($user, $type, $content, $name, $url)
+function addArticles($user, $title, $type, $content, $name, $url)
 {
     $content = str_replace("<img", "<img class=\"col-lg-12 col-md-6\"", $content);
-    $articleManager = new ArticleManager($user, $type, $content);
+    $articleManager = new ArticleManager($user, $title, $type, $content);
 
     if ($articleManager->addArticle($name, $url)) {
         header('Location: index.php?action=panel');
@@ -283,10 +283,10 @@ function addArticles($user, $type, $content, $name, $url)
 }
 
     /* The following function edit the article in the web application */
-function editArticles($user, $type, $content, $name, $url, $id)
+function editArticles($user, $title, $type, $content, $name, $url, $id)
 {
     $content = str_replace("<img", "<img class=\"col-lg-12 col-md-6\"", $content);
-    $articleManager = new ArticleManager($user, $type, $content);
+    $articleManager = new ArticleManager($user, $title, $type, $content);
 
     if ($articleManager->editArticle($id, $name, $url)) {
         header('Location: index.php?action=panel');
