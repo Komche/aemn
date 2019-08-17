@@ -25,7 +25,7 @@ class BureauManager extends Manager
 
    
 
-    public function verifUser($nom_bureau, $logo, $status)
+    public function verifBureau($nom_bureau, $logo)
     {
         if (empty($nom_bureau)) {
             return "Le nom du bureau ne doit pas être vide";
@@ -40,27 +40,20 @@ class BureauManager extends Manager
         }
     }
 
-    public function addUser()
+    public function addBureau($nom_bureau, $logo, $statut)
     {
-        $length = 12;
-        global $token;
-        $token = bin2hex(random_bytes($length));
-        $sql = "INSERT INTO users(last_name, first_name, email, phone_number, code)
-            SELECT * FROM(SELECT :last_name, :first_name, :email, :phone_number, :code) as tmp
-            WHERE NOT EXISTS(
-            SELECT email FROM users WHERE email = :email) LIMIT 1";
+        $sql = "INSERT INTO bureau(nom_bureau, logo, statut)
+            VALUE(:nom_bureau, :logo, :statut)";
             $user = $this->bdd()->prepare($sql);
             if($user->execute(array(
-                'last_name' => $this->last_name,
-                'first_name' => $this->first_name,
-                'email' => $this->email,
-                'phone_number' => $this->phone_number,
-                'code' => $token,
+                'nom_bureau' => $nom_bureau,
+                'logo' => $logo,
+                'statut' => $statut
             ))){
                 return 1;
             }else{
                 global $erreur;
-                return $erreur = 'Une erreur s\'est produite, l\'utilisateur existe dèjà !';
+                return $erreur = 'Une erreur s\'est produite lors de l\'ajout !';
             }
     }
 
