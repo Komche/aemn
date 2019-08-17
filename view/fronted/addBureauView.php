@@ -22,7 +22,7 @@
               <div class="panel-body">
                 <div class="form">
                     <?php if (isset($_GET['bureau'])) $bureau = getbureausToUpdate($_GET['bureau']); ?>
-                  <form class="form-validate form-horizontal" id="feedback_form" method="post" action="">
+                  <form class="form-validate form-horizontal" id="feedback_form" method="post" action="" enctype="multipart/form-data">
                     <div class="form-group ">
                       <label for="nom_bureau" class="control-label col-lg-2">Nom du bureau <span class="required">*</span></label>
                       <div class="col-lg-10">
@@ -32,7 +32,7 @@
                     <div class="form-group ">
                       <label for="logo" class="control-label col-lg-2">Logo <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control " value="<?if (isset($_GET['bureau'])) echo $bureau['logo'] ?>" id="logo" type="file" name="logo" accept="image" required />
+                        <input class="form-control " id="logo" type="file" name="logo" accept="image" required />
                       </div>
                     </div>
                     <div class="form-group ">
@@ -47,7 +47,7 @@
                     <div class="form-group">
                       <div class="col-lg-offset-2 col-lg-10">
                         <button class="btn btn-primary" type="submit">Valider</button>
-                        <? global $erreur; if(isset($erreur)) error($erreur); ?>
+                        <?php if(isset($_SESSION['erreur'])) error($_SESSION['erreur']); ?>
                       </div>
                     </div>
                   </form>

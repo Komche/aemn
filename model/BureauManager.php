@@ -35,11 +35,17 @@ class BureauManager extends Manager
     public static function addBureau($nom_bureau, $logo, $statut, $url)
     {
         $verif = self::verifBureau($nom_bureau, $logo);
-        if ($verif!==1) {
+        if ($verif!=1) {
             return $verif;
         }
 
-        $myurl = $this->addImg($logo, $url);
+        $myurl = self::addImg($logo, $url);
+        if ($myurl['code']==0) {
+            
+            return $myurl;
+        }
+        
+        $myurl = $myurl['msg'];
         $sql = "INSERT INTO bureau(nom_bureau, logo, statut)
             VALUE(:nom_bureau, :logo, :statut)";
             $user = self::getDb()->prepare($sql);
@@ -50,8 +56,7 @@ class BureauManager extends Manager
             ))){
                 return 1;
             }else{
-                global $erreur;
-                return $erreur = 'Une erreur s\'est produite lors de l\'ajout !';
+                return 'Une erreur s\'est produite lors de l\'ajout !';
             }
     }
 
@@ -62,7 +67,7 @@ class BureauManager extends Manager
             return $verif;
         }
 
-        $myurl = $this->addImg($logo, $url);
+        $myurl = self::addImg($logo, $url);
         $sql = "UPDATE bureau SET nom_bureau=:nom_bureau, logo=:logo, statut=:statut
          WHERE id_bureau=:id";
 
@@ -76,15 +81,23 @@ class BureauManager extends Manager
         return 1;
     }
 
-    public function addImg($name, $url)
+    public static function addImg($name, $url)
     {
         $fichier_dest = 'public/doc/' . $name;
 
         if (file_exists($fichier_dest)) {
-            die("$fichier_dest existe déjà dans ce dossier");
+            $msg['code'] = 0;
+            $msg['msg'] = "$fichier_dest existe déjà dans ce dossier";
+            return $msg;
         } else {
             if (move_uploaded_file($url, $fichier_dest)) {
-                return $fichier_dest;
+                $msg['code'] = 1;
+                $msg['msg'] = $fichier_dest;
+                return $msg;
+            }else {
+                $msg['code'] = 0;
+                $msg['msg'] = "Impossible d'ajouter cette image";
+            return $msg;
             }
         }
     }

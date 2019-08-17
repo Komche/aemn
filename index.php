@@ -1,7 +1,7 @@
 <?php
 require('controller/fronted.php');
 
-
+unset($_SESSION['erreur']);
 
 if (isset($_SESSION["id"])) {
     if (isset($_GET['action'])) {
@@ -128,8 +128,12 @@ if (isset($_SESSION["id"])) {
             if (isset($_SESSION['id']) && !empty($_FILES['logo'])) {
                 
                 $res = BureauManager::addBureau($nom_bureau, $_FILES['logo']['name'],$statut,$_FILES['logo']['tmp_name']);
-                if ($res==1) {
+                //print_r($res); die;
+                if (!is_array($res) && $res==1) {
                     header('Location: index.php?action=showBuro');
+                }else {
+                    $_SESSION['erreur'] = $res['msg'];
+                    
                 }
             }
             require_once('view/fronted/addBureauView.php');
