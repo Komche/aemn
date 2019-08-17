@@ -123,6 +123,17 @@ if (isset($_SESSION["id"])) {
             getaddImagesView();
         }elseif ($_GET['action'] == "showSlide") {// afficher des images défilantes
             getShowImagesSlideView();
+        }elseif ($_GET['action'] == "addBuro") {// ajouter un bureau
+            extract_post(['nom_bureau', 'statut']);
+            if (isset($_SESSION['id']) && !empty($_FILES['logo'])) {
+                
+                BureauManager::addBureau($nom_bureau, $_FILES['logo']['name'],$statut,$_FILES['logo']['tmp_name']);
+                
+            }
+            require_once('view/fronted/addBureauView.php');
+        }elseif ($_GET['action'] == "showBuro") {// afficher des bureau
+            //extract_get('galerie');
+            getShowBuroView();
         }  
 
     } else {

@@ -10,7 +10,7 @@ class BureauManager extends Manager
         $this->db = $this->bdd();
     }
 
-    public function getBureau()
+    public static function getBureau()
     {
         $sql = "SELECT * FROM bureau";
 
@@ -67,7 +67,7 @@ class BureauManager extends Manager
         if ($verif!==1) {
             return $verif;
         }
-        
+
         $myurl = $this->addImg($logo, $url);
         $sql = "UPDATE bureau SET nom_bureau=:nom_bureau, logo=:logo, statut=:statut
          WHERE id_bureau=:id";
