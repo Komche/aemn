@@ -1,0 +1,1 @@
+ALTER TABLE `article` ADD `lieu` VARCHAR(50) NOT NULL AFTER `likes`, ADD `date_evenement` DATE NOT NULL AFTER `lieu`;
