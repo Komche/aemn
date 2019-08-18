@@ -11,7 +11,7 @@
                 <div class="container">
                     <div class="row">
                         <?php
-                        $datas = getArticles();
+                        $datas = getArticles(null, 7);
                         foreach ($datas as $data)
                         {
                             ?>

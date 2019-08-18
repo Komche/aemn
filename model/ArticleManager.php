@@ -159,7 +159,7 @@ class ArticleManager extends Manager
 
     // }
 
-    public function getArticle($id = null)
+    public function getArticle($id = null, $type=null)
     {
         if ($id != null) {
             $sql = "SELECT * FROM article WHERE id_article=:id";
@@ -167,6 +167,15 @@ class ArticleManager extends Manager
             $req = $this->bdd()->prepare($sql);
             $req->execute(['id' => $id]);
             if ($result = $req->fetch()) {
+
+                return $result;
+            }
+        }elseif ($type != null) {
+            $sql = "SELECT * FROM article WHERE type=:type";
+
+            $req = $this->bdd()->prepare($sql);
+            $req->execute(['type' => $type]);
+            if ($result = $req->fetchAll()) {
 
                 return $result;
             }
