@@ -1,6 +1,6 @@
 <?php
-require('../config/Configuration.php');
-class Manager{
+require('api/config/Configuration.php');
+class Managers{
     private static $db;
 
     private static function setDb() {
