@@ -21,12 +21,14 @@ ob_start();
             </div>
           </div>
           <?php 
-            $datas = getPhotoArticles();
-            foreach ($datas as $data)
-            {
+            $datas = getFiles(0);
+            if (is_array($datas) || is_object($datas)) {
+                $i = 0;
+                foreach ($datas as $data) {
+                    $i++;
               ?>
               <div class="carousel-item">
-                <div class="carousel-background"><img src="<?= $data['url'] ?>" alt="photo dynamique"></div>
+                <div class="carousel-background"><img src="<?= $data['path'] ?>" alt="photo dynamique"></div>
                 <div class="carousel-container">
                   <div class="carousel-content">
                     <h2>Association des Etudiants Musulmans du Niger</h2>
@@ -35,7 +37,7 @@ ob_start();
                   </div>
                 </div>
               </div>
-              <?php
+                <?php }
             }
           ?>
 
@@ -255,44 +257,9 @@ ob_start();
 
   			</div>
 
-        <div class="facts-img">
-          <img src="public/vendor/img/facts-img.png" alt="" class="img-fluid">
-        </div>
-
       </div>
     </section><!-- #facts -->
 
-    <!--==========================
-      Clients Section
-    ============================-->
-    <!-- <section id="clients" class="wow fadeInUp">
-      <div class="container">
-
-        <header class="section-header">
-          <h3> Annonces </h3>
-        </header>
-        <h4><?php //echo lastAnnonce($_GET['last_id']); ?></h4>
-        <br>
-        <div class="owl-carousel clients-carousel">
-          <?php 
-            /* $datas = getAnnonces();
-            foreach ($datas as $data)
-            {
-              ?>
-              <img src="<?= $data['h_annonce'] ?>" alt="<?= $data['titre'] ?>">
-              <br>
-              <h5><?= $data['titre'] ?>, le <?= $data['date'] ?> à partir de <?= $data['heure'] ?></h5>
-              <?php
-            } */
-          ?>
-        </div>
-
-      </div>
-    </section>--><!-- #clients --> 
-
-    <!--==========================
-      Clients Section
-    ============================-->
     <section id="testimonials" class="section-bg wow fadeInUp">
       <div class="container">
 
@@ -307,13 +274,10 @@ ob_start();
             {
               ?>
               <div class="testimonial-item">
-                <img src="<?= $data['h_img'] ?>" class="testimonial-img" alt="<?= $data['titre'] ?>">
                 <h3><?= $data['titre'] ?></h3>
                 <h4><?= $data['rapporteur'] ?></h4>
                 <p>
-                  <img src="public/vendor/img/quote-sign-left.png" class="quote-sign-left" alt="">
-                    <?= $data['hadith'] ?>
-                  <img src="public/vendor/img/quote-sign-right.png" class="quote-sign-right" alt="">
+                  <?= $data['hadith'] ?>
                 </p>
               </div>
               <?php
