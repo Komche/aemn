@@ -19,7 +19,7 @@
                                 <img class="card-img" src="<?= $data['url'] ?>" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title"><a href="index.php?action=article&id=<?= $data['id_article']; ?>"><?= $data['title'] ?> </a></h5>
-                                    <p>Le <?= strftime(' %A %d %B  %G ',strtotime($data['date_evenement'])) ?>, <?= $data["lieu"]?></p>
+                                    <p>Le <?= strftime(' %A %d %B  %G ',strtotime($data['date_evenement'])) ?>, Lieu: <?= $data["lieu"]?></p>
                                 </div>
                             </div>
                             <br>
