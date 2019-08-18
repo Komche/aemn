@@ -272,8 +272,9 @@ function getRole()
 }  
 
     /* The following function add the article in the web application */
-function addArticles($user, $title, $type, $content, $name, $url)
+function addArticles($data, $path, $user, $title, $type, $content, $name, $url)
 {
+    
     $content = str_replace("<img", "<img class=\"col-lg-12 col-md-6\"", $content);
     $articleManager = new ArticleManager($user, $title, $type, $content);
 
