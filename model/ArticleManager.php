@@ -118,7 +118,7 @@ class ArticleManager extends Manager
         }
     }
 
-    public function addImg($name, $url)
+    public static function addImg($name, $url)
     {
         $fichier_dest = 'public/article/' . $name;
 

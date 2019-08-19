@@ -273,14 +273,21 @@ function getRole()
 }  
 
     /* The following function add the article in the web application */
-function addArticles($data, $path, $user, $title, $type, $content, $name, $url)
+function addArticles($data, $path)
 {
+    $res = Manager::is_not_empty($data);
+    if ($res!=1) {
+        return $res;
+    }
     
-    $content = str_replace("<img", "<img class=\"col-lg-12 col-md-6\"", $content);
-    $articleManager = new ArticleManager($user, $title, $type, $content);
+    $data['content'] = str_replace("<img", "<img class=\"col-lg-12 col-md-6\"", $data['content']);
+    $data['url'] =ArticleManager::addImg($data['name'], $data['url']);
+    $res = Managers::file_post_contents($path, $data);
 
-    if ($articleManager->addArticle($name, $url)) {
+    if (!$res['error']) {
         header('Location: index.php?action=panel');
+    }else {
+        return $res['message'];
     }
 }
 

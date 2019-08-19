@@ -207,6 +207,18 @@ class Manager
         }
     }
 
+    public static function is_not_empty($fields = [])
+    {
+        if (count($fields) != 0) {
+            foreach ($fields as $key => $field) {
+                if (empty($field) && trim($field) == "") {
+                    return "$key est vide";
+                }
+            }
+            return 1;
+        }
+    }
+
     public function error($error)
     {
         echo '<div class="alert alert-block alert-danger fade in">

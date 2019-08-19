@@ -41,6 +41,8 @@ class Table
                 $this->lastID($this->table, $this->property);
             } elseif ($this->val === 'distinct') {
                 $this->distinct($this->table, $this->property);
+            } elseif ($this->val === 'exist') {
+                echo $this->is_not_use($this->table, $this->property, $_GET['val']);
             } else {
                 $query .= "WHERE $this->property=:$this->property";
 

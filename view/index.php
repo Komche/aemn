@@ -11,7 +11,7 @@ if (isset($_SESSION["id"])) {
         } elseif ($_GET['action'] == "addU") {// ajouter un utilisateur 
             if (isset($_POST['last_name']) && isset($_POST['first_name']) && isset($_POST['email']) && isset($_POST['phone_number'])) {
 
-                addUsers($_POST['last_name'], $_POST['first_name'], $_POST['email'], $_POST['phone_number']);
+                addUsers($_POST['last_name'], $_POST['first_name'], $_POST['email'], $_POST['phone_number'], $_POST['bureau']);
             }
             getAddUserView();
         } elseif ($_GET['action'] == "showUV") {// gérer des utilisateurs
@@ -48,7 +48,7 @@ if (isset($_SESSION["id"])) {
         } elseif ($_GET['action'] == "modif" && isset($_GET['user'])) {// modifier un utilisateur
 
             if (isset($_POST['last_name']) && isset($_POST['first_name']) && isset($_POST['email']) && isset($_POST['phone_number'])) {
-                editUsers($_POST['last_name'], $_POST['first_name'], $_POST['email'], $_POST['phone_number'],$_GET['user']);
+                editUsers($_POST['last_name'], $_POST['first_name'], $_POST['email'], $_POST['phone_number'], $_POST['phone_number'], $_GET['user']);
             }
             getAddUserView();
         } elseif ($_GET['action'] == "addAV") {// ajouter un article

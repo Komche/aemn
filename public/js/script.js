@@ -106,8 +106,8 @@ function hideType() {
         ele = document.createElement('input');
         ele.setAttribute('class', 'form-control');
         ele.setAttribute('placeholder', 'Entrer le type d\'article');
-        ele.setAttribute('name', 'other');
-        ele.setAttribute('id', 'other');
+        ele.setAttribute('name', 'type');
+        ele.setAttribute('id', 'type');
         ele.setAttribute('required', '');
         parent.appendChild(ele);
     }
