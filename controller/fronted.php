@@ -12,6 +12,7 @@ require_once('model/Bureau.php');
 require_once('model/Hadith.php');
 require_once('model/Annonce.php');
 require_once('api/model/Managers.php');
+require_once('model/global.php');
 
 /** Web client mtza*/
 
@@ -273,17 +274,29 @@ function getRole()
 }  
 
     /* The following function add the article in the web application */
-function addArticles($data, $path)
+function addArticles($path, $data)
 {
     $res = Manager::is_not_empty($data);
     if ($res!=1) {
         return $res;
     }
-    
+    if (!Managers::isExit('type_article', 'label', $data['type'])) {
+        $url = API_ROOT_PATH."/type_article/label/".$data['type'];
+        $res = Managers::file_post_contents($url,['label'=>$data['type']]);
+        $res = json_decode($res, true);
+        if (!$res['error']) {
+            $article = new ArticleManager(0,0,0,0);
+            $data['type'] = $article->getId();
+        }else {
+            return $res['message'];
+        }
+    }
+
     $data['content'] = str_replace("<img", "<img class=\"col-lg-12 col-md-6\"", $data['content']);
     $data['url'] =ArticleManager::addImg($data['name'], $data['url']);
+    unset($data['name']);
     $res = Managers::file_post_contents($path, $data);
-
+    $res = json_decode($res, true);
     if (!$res['error']) {
         header('Location: index.php?action=panel');
     }else {

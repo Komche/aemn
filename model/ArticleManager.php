@@ -121,14 +121,14 @@ class ArticleManager extends Manager
     public static function addImg($name, $url)
     {
         $fichier_dest = 'public/article/' . $name;
-
-        if (file_exists($fichier_dest)) {
-            die("$fichier_dest existe déjà dans ce dossier");
-        } else {
-            if (move_uploaded_file($url, $fichier_dest)) {
-                return $fichier_dest;
-            }
+        while (file_exists($fichier_dest)) {
+            $fichier_dest = "$fichier_dest._copy";
         }
+       
+        if (move_uploaded_file($url, $fichier_dest)) {
+            return $fichier_dest;
+        }
+        
     }
 
     public function nbArticle()

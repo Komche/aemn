@@ -83,8 +83,7 @@
                                 <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-10">
                                         <button class="btn btn-primary" type="submit">Valider</button>
-                                        <? global $erreur;
-                                        if (isset($erreur)) error($erreur); ?>
+                                        <?php if(isset($_SESSION['erreur'])) error($_SESSION['erreur']); ?>
                                     </div>
                                 </div>
                             </form>

@@ -4,7 +4,7 @@ $folder = '';
 define ('HOST', "http://" . $_SERVER ['HTTP_HOST']); // get the hostname
 
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
-    $folder = '/adminManager';
+    $folder = '/aemn';
 }
 
 define('ROOT_PATH', HOST . "$folder");

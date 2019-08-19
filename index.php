@@ -54,22 +54,15 @@ if (isset($_SESSION["id"])) {
             }
             getAddUserView();
         } elseif ($_GET['action'] == "addAV") {// ajouter un article
-            if(isset($_POST['other'])){
-                $type = $_POST['other'];
-            }elseif (isset($_POST['type'])) {
-                $type = $_POST['type'];
+            $url = API_ROOT_PATH. "/article";
+            $data = $_POST;
+            if (!empty($_FILES['url']) && !empty($_SESSION['id'])) {
+                $data['url'] = $_FILES['url']['tmp_name'];
+                $data['name'] = $_FILES['url']['name'];
+                $data['user'] = $_SESSION['id'];
             }
-
-            if (isset($_SESSION['id']) && isset($_POST['title']) && isset($_POST['content']) && isset($_FILES['url']) && isset($type)) {
-                if(isset($_POST['other']) ){
-                    addType_articles($_POST['other']);
-                    $id = getId();
-                    addArticles($_SESSION['id'], $_POST['title'], $id, $_POST['content'], $_FILES['url']['name'], $_FILES['url']['tmp_name']);
-                }elseif (isset($_POST['type']) ) {
-                    addArticles($_SESSION['id'], $_POST['title'], $type, $_POST['content'], $_FILES['url']['name'], $_FILES['url']['tmp_name']);
-                }
-
-            }
+            $res = addArticles($url, $data);
+            $_SESSION['erreur'] = $res;
             getAddArticleView();
         } elseif ($_GET['action'] == "modif" && isset($_GET['article'])) { // modifier un article
             

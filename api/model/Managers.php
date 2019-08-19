@@ -100,11 +100,12 @@ class Managers{
 
     public static function isExit($table, $field,  $value)
     {
+        self::setDb();
         $sql = "SELECT * FROM $table WHERE $field=:val";
         $req = self::$db->prepare($sql);
         $req->execute(['val'=>$value]);
-        $res = $req->fetch(PDO::FETCH_ASSOC);
-        if (is_array($res) && !empty($res)) {
+        //$res = $req->fetch(PDO::FETCH_ASSOC);
+        if ($req->fetch(PDO::FETCH_ASSOC)) {
             return true;
         } else {
             return false;
