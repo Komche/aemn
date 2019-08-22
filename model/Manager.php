@@ -207,12 +207,20 @@ class Manager
         }
     }
 
-    public static function is_not_empty($fields = [])
+    public static function is_not_empty($fields = [], $not_required = [null])
     {
         if (count($fields) != 0) {
             foreach ($fields as $key => $field) {
                 if (empty($field) && trim($field) == "") {
-                    return "$key est vide";
+                    if (count($not_required) != 0) {
+                        foreach ($not_required as $nkey => $nvalue) {
+                            if ($key != $nkey) {
+                                return "$key est vide";
+                            }
+                        }
+                    } else {
+                        return "$key est vide";
+                    }
                 }
             }
             return 1;

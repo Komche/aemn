@@ -276,11 +276,11 @@ function getRole()
     /* The following function add the article in the web application */
 function addArticles($path, $data)
 {
-    $res = Manager::is_not_empty($data);
+    $res = Manager::is_not_empty($data, null);
     if ($res!=1) {
         return $res;
     }
-    if (!Managers::isExit('type_article', 'label', $data['type'])) {
+    if (!Managers::isExit('type_article', 'label', $data['type']) && !is_int($data['type'])) {
         $url = API_ROOT_PATH."/type_article/label/".$data['type'];
         $res = Managers::file_post_contents($url,['label'=>$data['type']]);
         $res = json_decode($res, true);

@@ -98,6 +98,25 @@ function notAdmin(i, j) {
 function hideType() {
     var hide = document.getElementById('type');
     var parent = document.getElementById('parent');
+    var parent_form = document.getElementById('feedback_form');
+    var contenu = document.getElementById('contenu');
+    var annonce = document.getElementsByClassName('annonce');
+    console.log(annonce, hide.value);
+    
+
+    lieu = `<div id="a_lieu" class="form-group annonce">
+    <label for="lieu" class="control-label col-lg-2">Lieu de l'activté</label>
+    <div class="col-lg-10" id="lieu">
+        <input class="form-control" id="lieu" name="lieu" type="text" value="" />
+    </div>
+</div>`;
+
+date_evenement = `<div id="a_date_evenement" class="form-group annonce">
+    <label for="date_evenement" class="control-label col-lg-2">date de l'activté</label>
+    <div class="col-lg-10" id="date_evenement">
+        <input class="form-control" id="date_evenement" name="date_evenement" type="date" value="" />
+    </div>
+</div>`;
     if (hide.value == 'Autre') {
         //remove element
         parent.removeChild(hide);
@@ -110,7 +129,27 @@ function hideType() {
         ele.setAttribute('id', 'type');
         ele.setAttribute('required', '');
         parent.appendChild(ele);
+    }else if (hide.value == 7) {   
+        if (!$('#a_lieu').length) {
+            $('#contenu').before(lieu);
+            $('#contenu').before(date_evenement);
+        }    
+    } else {
+        $('#a_lieu').remove();   
+        $('#a_date_evenement').remove();   
     }
+}
+
+function add_element(element, text=null, id=null, element_prev) {
+    ele = document.createElement(element);
+    ele.innerHTML = text;
+    ele.setAttribute('id', id);
+    ele.style.color = 'red';
+    element_prev.parentNode.insertBefore(ele, element_prev.nextSibling);
+}
+
+function remove_element(element, parent) {
+    parent.removeChild(element);
 }
 
 function hideCategory() {

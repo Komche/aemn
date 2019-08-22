@@ -42,7 +42,7 @@
                                 <div class="form-group ">
                                     <label for="chassis_number" class="control-label col-lg-2">Titre</label>
                                     <div class="col-lg-10" id="title">
-                                        <input class="form-control" id="title" name="title" type="text" value="<? if (isset($_GET['article'])) echo $article['title'] ?>" />
+                                        <input class="form-control" id="title" name="title" type="text" value="<?= (isset($_GET['article']))?  $article['title'] : '' ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group ">
@@ -72,11 +72,23 @@
                                         <p class="help-block">Selectionner le fichier(images, documents..) de l'article depuis votre pc.</p>
                                     </div>
                                 </div>
-                                <div class="form-group ">
+                                <div class="form-group annonce" hidden>
+                                    <label for="date_evenement" class="control-label col-lg-2">Lieu de l'activté</label>
+                                    <div class="col-lg-10" id="lieu">
+                                        <input class="form-control" id="lieu" name="lieu" type="text" value="<? if (isset($_GET['article'])) echo $article['lieu'] ?>" />
+                                    </div>
+                                </div>
+                                <div class="form-group annonce" hidden>
+                                    <label for="date_evenement" class="control-label col-lg-2">Date de l'activté</label>
+                                    <div class="col-lg-10" id="date_evenement">
+                                        <input class="form-control" id="date_evenement" name="date_evenement" type="date" value="<? if (isset($_GET['article'])) echo $article['date_evenement'] ?>" />
+                                    </div>
+                                </div>
+                                <div id="contenu" class="form-group">
                                     <label for="power" class="control-label col-lg-2">Contenu</label>
                                     <div class="col-lg-10">
                                         <textarea id="summernote" name="content" cols="30" rows="5" class="form-control">
-                                            <? if (isset($_GET['article'])) echo $article['content'] ?>
+                                            <?php if (isset($_GET['article'])) echo $article['content'] ?>
                                         </textarea>
                                     </div>
                                 </div>
