@@ -159,7 +159,7 @@ class ArticleManager extends Manager
 
     // }
 
-    public function getArticle($id = null)
+    public function getArticle($id = null, $type=null)
     {
         if ($id != null) {
             $sql = "SELECT * FROM article WHERE id_article=:id";
@@ -170,8 +170,17 @@ class ArticleManager extends Manager
 
                 return $result;
             }
+        }elseif ($type != null) {
+            $sql = "SELECT * FROM article WHERE type=:type";
+
+            $req = $this->bdd()->prepare($sql);
+            $req->execute(['type' => $type]);
+            if ($result = $req->fetchAll()) {
+
+                return $result;
+            }
         } else {
-            $sql = "SELECT id_article, title, content, last_name, first_name, likes, dates, url
+            $sql = "SELECT id_article, title, content, last_name, first_name, likes, dates, date_evenement, lieu, url
         FROM article, users WHERE user=id_user GROUP BY id_article DESC";
 
             $req = $this->bdd()->query($sql);
@@ -197,7 +206,7 @@ class ArticleManager extends Manager
     public function getVideoArticle()
     {
 
-        $sql = "SELECT id_article, title, content, dates, url FROM article WHERE statut=1";
+        $sql = "SELECT id_article, title, content, dates, url FROM article WHERE category='vidéos' ORDER BY dates";
         $req = $this->bdd()->query($sql);
         if ($result = $req->fetchAll()) {
             return $result;
@@ -207,7 +216,7 @@ class ArticleManager extends Manager
     public function getPhotoArticle()
     {
 
-        $sql = "SELECT * FROM article WHERE statut=2 GROUP BY title";
+        $sql = "SELECT * FROM article WHERE category='images' ORDER BY dates";
         $req = $this->bdd()->query($sql);
         if ($result = $req->fetchAll()) {
             return $result;
@@ -217,7 +226,7 @@ class ArticleManager extends Manager
     public function getPhotoArticleType($id)
     {
 
-        $sql = "SELECT * FROM article WHERE statut=2 and id_article='$id' GROUP BY title";
+        $sql = "SELECT * FROM article WHERE category='images' and id_article='$id' ORDER BY dates";
         $req = $this->bdd()->query($sql);
         if ($result = $req->fetchAll()) {
             return $result;

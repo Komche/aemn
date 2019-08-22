@@ -4,44 +4,27 @@
 ?>
 
 <main>
-    <div style="margin-top: 100px" class="article">
+<div class="article">
+        <h1 align="center">Nos Annonces</h1>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="container">
-                    <?php 
-                      $datas = getArticles();
-                      foreach ($datas as $data)
-                      {
-                          ?>
-                          <div class="card " style="width: 45rem;">
-                              <img class="card-img-top" src="<?= $data['url'] ?>" alt="Card image cap">
-                              <div class="card-body">
-                                  <h5 class="card-title"><a href="index.php?action=article&id=<?= $data['id_article']; ?>"><?= $data['title'] ?> </a></h5>
-                              </div>
-                          </div>
-                          <br>
-                          <?php
-                        }
-                    ?>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="row portfolio-container">
-                <div class="container">
-                    <div class="card ">
-                        <div class="card-header">
-                            <h1>Catégories</h1>
-                        </div>
-                        <?php 
-                            $datas = getType_articles();
-                            foreach ($datas as $data)
-                            {
-                                ?>
+                    <div class="row">
+                        <?php
+                        $datas = getArticles(null, 7);
+                        foreach ($datas as $data)
+                        {
+                            ?>
+                            <div class="col-md-4">
+                                <img class="card-img" src="<?= $data['url'] ?>" alt="Card image cap">
                                 <div class="card-body">
-                                   <a href="index.php?action=activite&id=<?= $data['id_type_article']; ?>"><?= $data['label']; ?></a>
+                                    <h5 class="card-title"><a href="index.php?action=article&id=<?= $data['id_article']; ?>"><?= $data['title'] ?> </a></h5>
+                                    <p>Le <?= strftime(' %A %d %B  %G ',strtotime($data['date_evenement'])) ?>, Lieu: <?= $data["lieu"]?></p>
                                 </div>
-                                <?php
-                            }
+                            </div>
+                            <br>
+                            <?php
+                        }
                         ?>
                     </div>
                 </div>

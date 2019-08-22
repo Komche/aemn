@@ -28,23 +28,16 @@
               <li><a href="index.php?action=be">Bureau Exécutif</a></li>
             </ul>
           </li>
-          <?php 
-            if($title == "Accueil")
-            {
-              ?>
-              <li><a href="#contact">Contact</a></li>
-              <li class="menu-has-children"><a href="#">Présentation</a>
-                <ul>
-                  <li><a href="#histoire">Historique</a></li>
-                  <li><a href="#objectif">Objectif</a></li>
-                  <li><a href="index.php?action=Section">Section</a></li>
-                  <li><a href="index.php?action=Ssection">Sous Section</a></li>
-                </ul>
-              </li>
-              <li><a href="#clients">Nos partenaire</a></li>
-              <?php
-            }
-          ?>
+            <li><a href="#contact">Contact</a></li>
+            <li class="menu-has-children"><a href="#">Présentation</a>
+              <ul>
+                <li><a href="#histoire">Historique</a></li>
+                <li><a href="#objectif">Objectif</a></li>
+                <li><a href="index.php?action=Section">Section</a></li>
+                <li><a href="index.php?action=Ssection">Sous Section</a></li>
+              </ul>
+            </li>
+            <li><a href="#clients">Nos partenaire</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
