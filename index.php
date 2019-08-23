@@ -99,6 +99,8 @@ if (isset($_SESSION["id"])) {
                 
                 addFiles($_FILES['images']['name'],$_FILES['images']['type'],$_FILES['images']['size'],$_FILES['images']['tmp_name'],$folder,$_SESSION['id']);
                 
+            }elseif (isset($_SESSION['id']) && is_not_empty(['folder', 'type','images', 'label'])) {
+                addFiles($_POST['label'],$_POST['type'],null,$_POST['images'],null,$_SESSION['id']);
             }
             getaddDocumentView();
         }elseif ($_GET['action'] == "showGalerie") {// afficher des images
@@ -132,6 +134,16 @@ if (isset($_SESSION["id"])) {
             require_once('view/fronted/addBureauView.php');
         }elseif ($_GET['action'] == "showBuro") {// afficher des bureau
            require_once('view/fronted/ShowBureauView.php');
+        }elseif($_GET['action']=='hadith') {
+            if (!empty($_POST)) {
+                $data = $_POST;
+                $res = addData($data, 'hadith');
+                //die(var_dump($data));
+                if ($res != 1) {
+                    $_SESSION['messages'] = $res;
+                }
+            }
+            require_once("view/fronted/hadithView.php");
         }  
 
     } else {

@@ -359,11 +359,29 @@ function showAlerte(nomDossier, id) {
 function typeImage(id) {
     var file = document.getElementById('images[]');
     var select = document.getElementById(id);
-
+    nom = `
+    <div id="label_url" class="form-group ">
+    <label for="label" class="control-label col-lg-2">Titre</label>
+    <div class="col-lg-10" id="">
+        <input class="form-control" id="label" name="label" type="text">
+    </div>
+  </div>
+    `;
     if (select.value== "Images") {
+        $('#label_url').remove();
+        file.setAttribute('type','file');
         file.setAttribute('accept','image/*');
-    }else{
+    }else if((select.value== "Autre")){
+        $('#label_url').remove();
+        file.setAttribute('type','file');
         file.setAttribute('accept','.doc, .docx, .pdf, .odp, .ppt, .odt');
+    }else if((select.value== "youtube")){
+        file.setAttribute('type','text');
+        file.setAttribute('id','images');
+        file.setAttribute('name','images');
+       if (!$('#label_url').length) {
+            $('#fic').before(nom);
+       }
     }
 
 
