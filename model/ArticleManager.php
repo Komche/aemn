@@ -206,7 +206,7 @@ class ArticleManager extends Manager
     public function getVideoArticle()
     {
 
-        $sql = "SELECT id_article, title, content, dates, url FROM article WHERE category='vidéos' ORDER BY dates";
+        $sql = "SELECT * FROM files WHERE type='youtube'";
         $req = $this->bdd()->query($sql);
         if ($result = $req->fetchAll()) {
             return $result;
