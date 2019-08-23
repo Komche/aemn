@@ -45,8 +45,25 @@ class DocumentManager extends Manager
 
     }
 
-    public function addFile($label = [], $type = [], $size = [], $url = [], $folder, $user)
+    public function addFile($label = [], $type = [], $size, $url = [], $folder, $user)
     {
+        if ($size == false && $folder == null) {
+            $sql = "INSERT INTO files(label, path,  size, type,  folder, user) 
+            VALUE(:label, :path, :size, :type, :folder, :user)";
+
+                $requete = $this->getDb()->prepare($sql);
+
+                $requete->execute(array(
+                    'label' => $label,
+                    'type' => $type,
+                    'size' => $size,
+                    'path' => $url,
+                    'folder' => $folder,
+                    'user' => $user
+                ));
+
+            return 1;
+        }
         $f = $this->getFolder($folder);
         $this->deleteFile($folder);
         $all = count($label) - 1;

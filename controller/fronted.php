@@ -422,7 +422,7 @@ function getDocumentsToDelete($folder)
 function addFiles($label, $type, $size, $url, $folder, $user)
 {
     $documentManager = new DocumentManager();
-    //echo ('<br>' . $label . ' ' . $type . ' ' . $size . 'M ' . $url . '(url)' . $folder . '<br>'); die();
+    //echo ('<br>' . $label . ' ' . $type . ' ' . $size  . $url . '(url)' . $folder . '<br>'); die();
     if ($documentManager->addFile($label, $type, $size, $url, $folder, $user)) {
         header('Location: index.php?action=panel');
     }

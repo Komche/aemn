@@ -45,6 +45,7 @@
                             <select onclick="typeImage(this.id)" class="form-control" id="type" name="type">
                                 <option value="Images">Images</option>
                                 <option value="Autre">Word/PDF ...</option>
+                                <option value="youtube">Youtube</option>
                             </select>
                           </div>
                         </div>
@@ -63,7 +64,7 @@
                           </select>
                           </div>
                           </div>
-                        <div class="form-group ">
+                        <div id="fic" class="form-group ">
                           <label for="chassis_number" class="control-label col-lg-2">Fichiers</label>
                           <div class="col-lg-10" id="parentF">
                               <input class="form-control" multiple accept="" id="images[]" name="images[]"  type="file"  />

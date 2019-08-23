@@ -99,6 +99,8 @@ if (isset($_SESSION["id"])) {
                 
                 addFiles($_FILES['images']['name'],$_FILES['images']['type'],$_FILES['images']['size'],$_FILES['images']['tmp_name'],$folder,$_SESSION['id']);
                 
+            }elseif (isset($_SESSION['id']) && is_not_empty(['folder', 'type','images', 'label'])) {
+                addFiles($_POST['label'],$_POST['type'],null,$_POST['images'],null,$_SESSION['id']);
             }
             getaddDocumentView();
         }elseif ($_GET['action'] == "showGalerie") {// afficher des images
