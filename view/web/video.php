@@ -18,7 +18,7 @@
                         <div class="portfolio-wrap">
                             <iframe width="540" height="300" src="https://www.youtube.com/embed/<?= $data['url'] ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <div class="portfolio-info">
-                                <h4><a href="#"><?= $data['title'] ?>,Le <?= strftime(' %A %d %B  %G ',strtotime($data['dates'])) ?></a></h4>
+                                <h4><a href="#"><?= $data['title'] ?></a></h4>
                             </div>
                         </div>
                     </div>

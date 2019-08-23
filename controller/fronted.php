@@ -335,10 +335,10 @@ function nbArticles()
     return $all->nbArticle();
 }
 
-function getArticles($id=null)
+function getArticles($id=null,$type=null)
 {
     $data = new ArticleManager(0, 0, 0, 0, 0);
-    return $data->getArticle($id);
+    return $data->getArticle($id,$type);
 }
 
 function getType_articles()
