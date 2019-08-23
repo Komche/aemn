@@ -544,7 +544,21 @@ function getArticleType($id)
     return $product->getArticleType($id);
 }
 
-
+function addData($data, $table)
+{
+    $url = API_ROOT_PATH. "/object/$table";
+    $res = Manager::addHadith($url, $data);
+    if (isset($res['error'])) {
+        $res = json_decode($res, true);
+        if (!$res['error']) {
+            header('Location: index.php?action=hadith');
+        }else {
+            return $res['message'];
+        }
+    }else {
+        return $res['message'];
+    }
+}
 
 function listeActivite()
 {

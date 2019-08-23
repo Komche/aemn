@@ -145,6 +145,31 @@
                     </li>
                     <li class="sub-menu">
                         <a href="javascript:;" class="">
+                            <i class="fa fa-pencil"></i>
+                            <span>Hadith</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <?php 
+                            if (isset($_SESSION['read_role'])) {
+                              if ($_SESSION['read_role'] == 'yes-done') {
+                                ?>
+                            <li><a class="" href="index.php?action=hadith">Accéder</a></li>
+                            <?php 
+                          }
+                        }
+                        if (isset($_SESSION['write_role'])) {
+                          if ($_SESSION['write_role'] == 'yes-done') {
+                            ?>
+                            <!--<li><a class="" href="index.php?action=addBuro">Ajouter</a></li>-->
+                            <?php 
+                          }
+                        }
+                        ?>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
                             <i class="fa fa-folder-o"></i>
                             <span>Document</span>
                             <span class="menu-arrow arrow_carrot-right"></span>

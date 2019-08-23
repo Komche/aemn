@@ -132,6 +132,16 @@ if (isset($_SESSION["id"])) {
             require_once('view/fronted/addBureauView.php');
         }elseif ($_GET['action'] == "showBuro") {// afficher des bureau
            require_once('view/fronted/ShowBureauView.php');
+        }elseif($_GET['action']=='hadith') {
+            if (!empty($_POST)) {
+                $data = $_POST;
+                $res = addData($data, 'hadith');
+                //die(var_dump($data));
+                if ($res != 1) {
+                    $_SESSION['messages'] = $res;
+                }
+            }
+            require_once("view/fronted/hadithView.php");
         }  
 
     } else {
