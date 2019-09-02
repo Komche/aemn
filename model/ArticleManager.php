@@ -215,7 +215,6 @@ class ArticleManager extends Manager
 
     public function getPhotoArticle()
     {
-
         $sql = "SELECT * FROM article WHERE category='images' ORDER BY dates";
         $req = $this->bdd()->query($sql);
         if ($result = $req->fetchAll()) {
