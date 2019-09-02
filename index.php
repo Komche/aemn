@@ -172,12 +172,7 @@ if (isset($_SESSION["id"])) {
         if ($_GET['action'] == "admin") { 
             getLoginPage();
         } elseif ($_GET['action'] == "activite") { 
-            if($_GET['id']){
-                $id = $_GET['id'];
-                getCategorieActivite($id);
-            } else {
                 getActivitePage();
-            }
         } elseif ($_GET['action'] == "photo") { 
             getGaleriePhoto();
         } elseif ($_GET['action'] == "article") { 
