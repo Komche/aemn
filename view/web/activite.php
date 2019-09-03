@@ -1,18 +1,44 @@
 <?php 
     $title = "AEMN| Nos activités";
     ob_start();
+    /**
+     * @var currentPage variable
+     * représente la page courante
+     * si elle est égale à 0, on lui attribue 1
+     */
     $currentPage = (int)($_GET['page'] ?? 1);
     if($currentPage <= 0){
         throw new Exception("Numéro de page invalide");
         
     }
+    /**
+     * @var count variable
+     * contient le nombre total d'annonce
+     */
     $count = countArticles(7);
+    /**
+     * @var perPage variable
+     * représentant le nombre d'annonce à afficher par page
+     */
     $perPage = 6;
+    /**
+     * @var pages variable
+     * @param count
+     * @param perPage
+     * le nombre de page 
+     */
     $pages = ceil($count / $perPage);
     if ($currentPage > $pages){
         throw new Exception("Cette page n'existe pas");
     }
+    /**
+     * @var offset variable
+     */
     $offset = $perPage * ($currentPage - 1);
+    /**
+     * @var link variable
+     * lien de pagination
+     */
     $link = "index.php?action=activite";
 ?>
 
@@ -24,6 +50,14 @@
                 <h3 align="center">Nos Annonces</h3>
                     <div class="row">
                         <?php
+                        /**
+                         * @var datas variable
+                         * récupération des articles
+                         * @param id null
+                         * @param type annonce
+                         * @param perPage
+                         * @param offset calculé
+                         */
                         $datas = getArticles(null, 7, $perPage, $offset);
                         foreach ($datas as $data)
                         {
@@ -52,10 +86,10 @@
                 <?php
                 if($currentPage > 2) $link .= '&page' . ($currentPage - 1);
                 ?>
-                    <a href="<?= $link ?>" class="btn btn-primary">&laquo; Page précédente</a>
+                    <a href="<?= $link ?>" class="btn btn-success">&laquo; Page précédente</a>
                 <?php endif; ?>
             <?php if($currentPage < $pages):?>
-                <a href="index.php?action=activite&page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante &raquo;</a>
+                <a href="index.php?action=activite&page=<?= $currentPage + 1 ?>" class="btn btn-success ml-auto">Page suivante &raquo;</a>
             <?php endif; ?>
         </div>
     </div>
