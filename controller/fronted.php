@@ -322,7 +322,7 @@ function editArticles($user, $title, $type, $content, $name, $url, $id)
   /* The following function add the article in the web application */
 function likes($id, $like)
 {
-    $articleManager = new ArticleManager(0, 0, 0, 0, 0);
+    $articleManager = new ArticleManager(0, 0, 0, 0, 0,0);
 
     if ($articleManager->like($id, $like)) {
         header('Location: index.php?action=panel');
@@ -331,32 +331,36 @@ function likes($id, $like)
 
 function nbArticles()
 {
-    $all = new ArticleManager(0, 0, 0, 0, 0);
+    $all = new ArticleManager(0, 0, 0, 0, 0,0);
     return $all->nbArticle();
 }
 
-function getArticles($id=null,$type=null)
+function countArticles($type=null){
+    $data = new ArticleManager(0, 0, 0, 0, 0,0);
+    return $data->countArticle($type);
+}
+function getArticles($id=null,$type=null,$perPage=null,$offset=null)
 {
-    $data = new ArticleManager(0, 0, 0, 0, 0);
-    return $data->getArticle($id,$type);
+    $data = new ArticleManager(0, 0, 0, 0, 0,0);
+    return $data->getArticle($id,$type,$perPage,$offset);
 }
 
 function getType_articles()
 {
-    $data = new ArticleManager(0, 0, 0, 0, 0);
+    $data = new ArticleManager(0, 0, 0, 0, 0,0);
     return $data->getType_article();
 }
 
 function addType_articles($label)
 {
-    $data = new ArticleManager(0, 0, 0, 0, 0);
+    $data = new ArticleManager(0, 0, 0, 0, 0,0);
     return $data->addType_article($label);
 }
 
 // this function get the ID of the last line of type_article
 function getId()
 {
-    $product = new ArticleManager(0, 0, 0, 0, 0);
+    $product = new ArticleManager(0, 0, 0, 0, 0,0);
     return $product->getId();
 }
 
@@ -515,31 +519,31 @@ function error($error)
 
 function getVideoArticles()
 {
-    $product = new ArticleManager(0, 0, 0, 0, 0);
+    $product = new ArticleManager(0, 0, 0, 0, 0,0);
     return $product->getVideoArticle();
 }
 
 function getPhotoArticles()
 {
-    $product = new ArticleManager(0, 0, 0, 0, 0);
+    $product = new ArticleManager(0, 0, 0, 0, 0,0);
     return $product->getPhotoArticle();
 }
 
 function getPhotoArticlesType($id)
 {
-    $product = new ArticleManager(0, 0, 0, 0, 0);
+    $product = new ArticleManager(0, 0, 0, 0, 0,0);
     return $product->getPhotoArticleType($id);
 }
 function Article($id)
 {
-    $product = new ArticleManager(0, 0, 0, 0, 0);
+    $product = new ArticleManager(0, 0, 0, 0, 0,0);
     $id = $_GET['id'];
     return $product->Article($id);
 }
 
 function getArticleType($id)
 {
-    $product = new ArticleManager(0, 0, 0, 0, 0);
+    $product = new ArticleManager(0, 0, 0, 0, 0,0);
     $id = $_GET['id'];
     return $product->getArticleType($id);
 }
