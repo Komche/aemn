@@ -175,7 +175,7 @@ if (isset($_SESSION["id"])) {
                 getActivitePage();
         }
         elseif($_GET['action'] == "activite&page="){
-
+            getActivitePage();
         } 
         elseif ($_GET['action'] == "photo") { 
             getGaleriePhoto();
