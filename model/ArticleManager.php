@@ -6,14 +6,18 @@ class ArticleManager extends Manager
 
     private $user;
     private $type;
+    private $perPage; 
+    private $offset;
     private $title;
     private $content;
     private $db;
 
-    public function __construct($user, $title, $type, $content)
+    public function __construct($user, $title, $type, $perPage, $offset, $content)
     {
         $this->user = $user;
         $this->type = $type;
+        $this->perPage = $perPage;
+        $this->offset = $offset;
         $this->title = $title;
         $this->content = $content;
         $this->db = $this->bdd();
@@ -159,7 +163,7 @@ class ArticleManager extends Manager
 
     // }
 
-    public function getArticle($id = null, $type=null)
+    public function getArticle($id = null, $type=null, $perPage=null, $offset=null)
     {
         if ($id != null) {
             $sql = "SELECT * FROM article WHERE id_article=:id";
@@ -170,8 +174,10 @@ class ArticleManager extends Manager
 
                 return $result;
             }
-        }elseif ($type != null) {
-            $sql = "SELECT * FROM article WHERE type=:type";
+        } elseif ($type != null and $perPage!= null and $offset!= null) {
+            
+            $sql = "SELECT * FROM article WHERE type=:type LIMIT $perPage OFFSET $offset";
+            //$sql = "SELECT * FROM article WHERE type=:type";
 
             $req = $this->bdd()->prepare($sql);
             $req->execute(['type' => $type]);
@@ -189,6 +195,15 @@ class ArticleManager extends Manager
                 return $result;
             }
         }
+    }
+
+    /** Methodes pour la pagination */
+    public function countArticle($type=null){
+        $count = (int)$this
+            ->bdd()->query("SELECT COUNT(id_article) FROM article WHERE type='$type'")
+            ->fetch(PDO::FETCH_NUM)[0]
+        ;
+        return $count;
     }
 
 
