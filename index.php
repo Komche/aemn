@@ -179,6 +179,12 @@ if (isset($_SESSION["id"])) {
         } 
         elseif ($_GET['action'] == "photo") { 
             getGaleriePhoto();
+        }
+        elseif ($_GET['action'] == "photo&id=") {
+            if($_GET['id']){
+                $id = $_GET['id'];
+                getGaleriePhoto($id);
+            }
         } elseif ($_GET['action'] == "article") { 
             if($_GET['id']){
                 $id = $_GET['id'];
