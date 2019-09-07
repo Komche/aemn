@@ -523,10 +523,10 @@ function getVideoArticles()
     return $product->getVideoArticle();
 }
 
-function getPhotoArticles()
+function getPhotoArticles($id=null)
 {
     $product = new ArticleManager(0, 0, 0, 0, 0,0);
-    return $product->getPhotoArticle();
+    return $product->getPhotoArticle($id);
 }
 
 function getPhotoArticlesType($id)
