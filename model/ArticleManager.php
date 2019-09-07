@@ -228,24 +228,22 @@ class ArticleManager extends Manager
         }
     }
 
-    public function getPhotoArticle()
+    public function getPhotoArticle($id)
     {
-        $sql = "SELECT * FROM article WHERE category='images' ORDER BY dates";
-        $req = $this->bdd()->query($sql);
-        if ($result = $req->fetchAll()) {
-            return $result;
-        }
-    }
-
-    public function getPhotoArticleType($id)
-    {
-
-        $sql = "SELECT * FROM article WHERE category='images' and id_article='$id' ORDER BY dates";
-        $req = $this->bdd()->query($sql);
-        if ($result = $req->fetchAll()) {
-            return $result;
+        if($id != null){
+            $sql = "SELECT * FROM article WHERE category='images' and type='$id' ORDER BY dates";
+            $req = $this->bdd()->query($sql);
+            if ($result = $req->fetchAll()) {
+                return $result;
+            }
+            var_dump($result);
+            die();
         } else {
-            $this->getPhotoArticle();
+            $sql = "SELECT * FROM article WHERE category='images' ORDER BY dates";
+            $req = $this->bdd()->query($sql);
+            if ($result = $req->fetchAll()) {
+                return $result;
+            }
         }
     }
 
