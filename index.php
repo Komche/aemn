@@ -168,37 +168,40 @@ if (isset($_SESSION["id"])) {
             header('Location: index.php?panel=go');
         }
         getLoginPage();
-    } elseif (isset($_GET['action'])) {
+    } elseif (isset($_GET['action'])) { //Front
         if ($_GET['action'] == "admin") { 
             getLoginPage();
-        } elseif ($_GET['action'] == "activite") { 
+        } elseif ($_GET['action'] == "activite") { //Front Annonce
                 getActivitePage();
         }
-        elseif($_GET['action'] == "activite&page="){
+        elseif($_GET['action'] == "activite&page="){ //Front Annonce with Paginated
             getActivitePage();
         } 
-        elseif ($_GET['action'] == "photo") { 
+        elseif ($_GET['action'] == "photo") { //Front Galérie Photo All
             getGaleriePhoto();
         }
-        elseif ($_GET['action'] == "photo&id=") {
+        elseif ($_GET['action'] == "photo&id=") { //Front Galérie Photo By Type
             if($_GET['id']){
                 $id = $_GET['id'];
                 getGaleriePhoto($id);
             }
-        } elseif ($_GET['action'] == "article") { 
+        } elseif ($_GET['action'] == "article") { //Front Article by Id
             if($_GET['id']){
                 $id = $_GET['id'];
                 getArticlePage($id);
             } else {
                 getActivitePage();
             }
-        } elseif ($_GET['action'] == "video") { 
+        } elseif ($_GET['action'] == "video") { //Front Galerie Vidéo
             getGalerieVideo();
-        } elseif ($_GET['action'] == "organe") { 
+        }
+        elseif ($_GET['action'] == "document") { //Front Documentation
+            getDocuments();
+        } elseif ($_GET['action'] == "organe") { //Front Organe
             getOrganePage();
-        } elseif ($_GET['action'] == "be") { 
+        } elseif ($_GET['action'] == "be") { //Front BE
             getBePage();
-        } elseif ($_GET['action'] == "organigramme") { 
+        } elseif ($_GET['action'] == "organigramme") { //Front Organigramme
             getOrganigrammePage();
         }
     } else {
