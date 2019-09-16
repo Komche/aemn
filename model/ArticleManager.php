@@ -271,4 +271,13 @@ class ArticleManager extends Manager
             return $result;
         }
     }
+
+    public function getDocuments(){
+        $sql = "SELECT * FROM folder where type='Documentation'";
+        $req = $this->bdd()->query($sql);
+        if ($result = $req->fetchAll()) {
+
+            return $result;
+        }
+    }
 }
