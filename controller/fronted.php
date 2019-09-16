@@ -45,6 +45,15 @@ function getGaleriePhoto()
     require_once($page);
 }
 
+/**
+ * function de require de la page document.php
+ */
+function getDocuments()
+{
+    $page = 'view/web/document.php';
+    require_once($page);
+}
+
 function getGalerieVideo()
 {
     $page = 'view/web/video.php';
@@ -521,6 +530,14 @@ function getVideoArticles()
 {
     $product = new ArticleManager(0, 0, 0, 0, 0,0);
     return $product->getVideoArticle();
+}
+
+/**
+ * function pour la récupération des documents
+ */
+function getDocument(){
+    $documents = new ArticleManager(0, 0, 0, 0, 0,0);
+    return $documents->getDocuments();
 }
 
 function getPhotoArticles($id=null)
