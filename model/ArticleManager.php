@@ -186,7 +186,7 @@ class ArticleManager extends Manager
                 return $result;
             }
         } else {
-            $sql = "SELECT id_article, title, content, last_name, first_name, likes, dates, date_evenement, lieu, url
+            $sql = "SELECT id_article, title, content, last_name, first_name, likes, dates, dates, lieu, url
         FROM article, users WHERE user=id_user GROUP BY id_article DESC";
 
             $req = $this->bdd()->query($sql);

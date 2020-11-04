@@ -12,17 +12,19 @@ class Manager extends Managers
 
     protected function bdd()
     {
-        $dbname = 'akoybizc_aemn';
-        $user = 'akoybizc_attaher';
-        $pass = '@aemn2019';
+       $dbname = 'akoybizc_baseaemn';
+        $user = 'akoybizc_komche';
+        $pass = '@damoukomche2019';
+        $host = 'localhost';
         if ($_SERVER["SERVER_NAME"] == 'localhost') {
-            $dbname = 'aemn';
+            $dbname = 'baseaemn';
             $user = 'root';
             $pass = '';
+            $host = 'localhost';
         }
         try {
             $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-            $bdd = new PDO("mysql:host=localhost;dbname=$dbname;charset=utf8", "$user", "$pass", $pdo_options);
+            $bdd = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", "$user", "$pass", $pdo_options);
         } catch (Exception $e) {
             die('Erreur :' . $e->getMessage());
         }

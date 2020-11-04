@@ -1,4 +1,8 @@
 <?php $title = "Accueil";
+$target = "../baseaemn/";
+if ($_SERVER["SERVER_NAME"] != 'localhost') {
+  $target = 'https://www.base.aemn-niger.org/';
+}
 ob_start();
 ?>
 
@@ -22,13 +26,14 @@ ob_start();
           </div>
           <?php 
             $datas = getFiles(0);
+            // var_dump($datas);  die;
             if (is_array($datas) || is_object($datas)) {
                 $i = 0;
                 foreach ($datas as $data) {
                     $i++;
               ?>
               <div class="carousel-item">
-                <div class="carousel-background"><img src="<?= $data['path'] ?>" alt="photo dynamique"></div>
+                <div class="carousel-background"><img src="<?= $target.$data['file_url'] ?>" alt="photo dynamique"></div>
                 <div class="carousel-container">
                   <div class="carousel-content">
                     <h2>Association des Etudiants Musulmans du Niger</h2>
@@ -306,7 +311,7 @@ ob_start();
                   ?>
           <div class="col-lg-3 col-md-6 wow fadeInUp">
             <div class="member">
-              <img src="<?= $data['logo']?>" class="img-fluid" alt="<?= $data['nom_bureau']?>">
+              <img src="<?= $target.$data['logo']?>" class="img-fluid" alt="<?= $data['nom_bureau']?>">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4><?= $data['nom_bureau']?></h4>

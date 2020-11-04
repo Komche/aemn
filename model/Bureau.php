@@ -11,7 +11,7 @@ class Bureau extends Manager
     }
 
     public function getLogo(){
-        $sql = "SELECT nom_bureau, logo FROM bureau";
+        $sql = "SELECT libelleBureau nom_bureau, file_url logo FROM bureau b, files f WHERE b.photo=f.id";
         $req = $this->bdd()->query($sql);
         if ($result = $req->fetchAll()) {
             return $result;
@@ -29,7 +29,7 @@ class Bureau extends Manager
 
     public function nbSection()
     {
-        $sql = " SELECT COUNT(*) AS be FROM bureau where statut=1";
+        $sql = " SELECT COUNT(*) AS be FROM bureau where typeBureau='Section'";
         $req = $this->bdd()->query($sql);
         if ($res = $req->fetch()) {
             return $res['be'];
@@ -38,7 +38,7 @@ class Bureau extends Manager
 
     public function nbSsection()
     {
-        $sql = " SELECT COUNT(*) AS be FROM bureau where statut=2";
+        $sql = " SELECT COUNT(*) AS be FROM bureau where typeBureau='Sous section'";
         $req = $this->bdd()->query($sql);
         if ($res = $req->fetch()) {
             return $res['be'];
