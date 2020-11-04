@@ -17,7 +17,7 @@ class Manager extends Managers
         $pass = '@damoukomche2019';
         $host = 'localhost';
         if ($_SERVER["SERVER_NAME"] == 'localhost') {
-            $dbname = 'baseaemn';
+            $dbname = 'baseaem';
             $user = 'root';
             $pass = '';
             $host = 'localhost';
