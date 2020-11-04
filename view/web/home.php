@@ -282,7 +282,7 @@ ob_start();
                 <h3><?= $data['titre'] ?></h3>
                 <h4><?= $data['rapporteur'] ?></h4>
                 <p>
-                  <?= $data['hadith'] ?>
+                  <?= $data['leHadith'] ?>
                 </p>
               </div>
               <?php
