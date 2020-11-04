@@ -256,7 +256,7 @@ ob_start();
   				</div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">11</span>
+            <span data-toggle="counter-up"><?= allMember() ?></span>
             <p>Membres / BE</p>
   				</div>
 

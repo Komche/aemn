@@ -629,4 +629,12 @@ function lastAnnonce($id)
     return $all->lastAnnonce($id);
 }
 
+function allMember()
+{
+    $sql = "SELECT COUNT(DISTINCT(numero)) nb FROM membre";
+    $manager = new Manager();
+    $req = $manager->bdd()->query($sql);
+    return $req->fetch()['nb'];
+}
+
 /** Web client mtza*/

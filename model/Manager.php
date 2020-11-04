@@ -10,7 +10,7 @@ class Manager extends Managers
     protected $phone_number;
 
 
-    protected function bdd()
+    public function bdd()
     {
        $dbname = 'akoybizc_baseaemn';
         $user = 'akoybizc_komche';
