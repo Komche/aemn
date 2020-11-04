@@ -11,7 +11,7 @@ class Bureau extends Manager
     }
 
     public function getLogo(){
-        $sql = "SELECT libelleBureau nom_bureau, file_ur logo FROM bureau b, files f WHERE b.photo=f.id";
+        $sql = "SELECT libelleBureau nom_bureau, file_url logo FROM bureau b, files f WHERE b.photo=f.id";
         $req = $this->bdd()->query($sql);
         if ($result = $req->fetchAll()) {
             return $result;
