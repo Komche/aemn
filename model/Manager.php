@@ -1,5 +1,5 @@
 <?php
-require_once('model/global.php');
+// require_once('model/global.php');
 require_once('api/model/Managers.php');
 class Manager extends Managers
 {
